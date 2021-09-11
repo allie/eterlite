@@ -7,7 +7,7 @@
 .dataContainer {
   display: flex;
   flex-direction: column;
-  color: white;
+  color: black;
   font-size: calc(12rem / 16);
   font-family: monospace;
   overflow: auto;
@@ -18,7 +18,7 @@
   font-family: monospace;
   font-size: calc(12rem / 16);
   font-weight: bold;
-  color: white;
+  color: black;
   padding-left: 8px;
   padding-right: 8px;
   height: 16px;
@@ -32,11 +32,11 @@
 }
 
 .row:nth-child(even) {
-  background-color: #333333;
+  /* background-color: #333333; */
 }
 
 .row:nth-child(odd) {
-  background-color: #292929;
+  /* background-color: #292929; */
 }
 
 .rank {
@@ -57,9 +57,9 @@
 }
 
 .level {
-  color: white;
+  color: black;
 }
 
 .exp {
-  color: white;
+  color: black;
 }

@@ -147,3 +147,7 @@ button {
   font: inherit;
   -webkit-font-smoothing: inherit;
 }
+
+* {
+  box-sizing: border-box;
+}

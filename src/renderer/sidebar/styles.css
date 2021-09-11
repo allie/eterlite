@@ -2,21 +2,30 @@
   height: 100%;
   width: 320px;
   flex: none;
-  background-color: #232323;
   display: flex;
+  margin-right: 1px;
   flex-direction: column;
+  border: 12px solid transparent;
+  border-image-source: url(../../../assets/images/border1.png);
+  border-image-slice: 12 fill;
+  border-image-repeat: repeat;
+  border-image-outset: 4px 0 0 4px;
+  padding: 0px 4px 4px 0;
 }
 
 .panelArea {
   flex: 1 1 auto;
-  width: 100%;
   overflow: hidden;
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: calc(13rem / 16);
+  font-weight: bold;
   color: white;
-  padding: 8px;
   margin-bottom: 8px;
   flex: none;
+  border: 8px solid transparent;
+  border-image-source: url(../../../assets/images/highlight_back.png);
+  border-image-slice: 8 fill;
+  border-image-repeat: repeat;
 }

@@ -1,11 +1,19 @@
 .gameClient {
   flex: 1 1 auto;
   position: relative;
+  background: transparent !important;
+  border: 12px solid transparent !important;
+  border-image-source: url(../../../assets/images/border3.png) !important;
+  border-image-slice: 12 fill !important;
+  border-image-repeat: repeat !important;
+  border-image-outset: 4px 0 0 0 !important;
+  margin-left: 1px !important;
+  margin-right: 1px !important;
 }
 
 .gameClient canvas {
   margin: 0;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: -5px;
+  left: -1px;
 }

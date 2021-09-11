@@ -2,8 +2,13 @@
   flex: none;
   display: flex;
   justify-content: space-between;
-  padding: 4px;
-  background-color: #0f0f0f;
+  margin-left: 1px;
+  margin-right: 1px;
+  border: 12px solid transparent;
+  border-image-source: url(../../../assets/images/border2.png);
+  border-image-slice: 12 fill;
+  border-image-repeat: repeat;
+  border-image-outset: 0px;
 }
 
 .leftContainer,
@@ -13,25 +18,35 @@
 }
 
 .leftContainer button:not(:last-of-type) {
-  margin-right: 4px;
+  margin-right: 2px;
 }
 
 .rightContainer button:not(:first-of-type) {
-  margin-left: 4px;
+  margin-left: 2px;
 }
 
 .toolbarContainer button {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
   background-color: transparent;
+  border: 8px solid transparent;
+  border-image-source: url(../../../assets/images/button_blue.png);
+  border-image-slice: 8 fill;
+  border-image-repeat: repeat;
+}
+
+.toolbarContainer button img {
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.8));
 }
 
 .toolbarContainer button:hover {
-  background-color: #424242;
+  border: 8px solid transparent;
+  border-image-source: url(../../../assets/images/button_blue_shine.png);
+  border-image-slice: 8 fill;
+  border-image-repeat: repeat;
 }
 
 .toolbarContainer button:active {
@@ -40,4 +55,8 @@
 
 .toolbarContainer .activePlugin {
   background-color: #303030;
+  border: 8px solid transparent;
+  border-image-source: url(../../../assets/images/button_blue_shine.png);
+  border-image-slice: 8 fill;
+  border-image-repeat: repeat;
 }

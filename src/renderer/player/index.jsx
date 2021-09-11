@@ -56,7 +56,10 @@ export default function Player() {
       const width = document.getElementById('gameClient').clientWidth;
       document
         .querySelector('canvas')
-        ?.setAttribute('style', `width: ${width}px; height: ${height - 32}px;`);
+        ?.setAttribute(
+          'style',
+          `width: ${width + 1}px; height: ${height - 71}px;`
+        );
     }
 
     gameInstanceRef.current = window.UnityLoader.instantiate(
