@@ -1,0 +1,43 @@
+.toolbarContainer {
+  flex: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 4px;
+  background-color: #0f0f0f;
+}
+
+.leftContainer,
+.rightContainer {
+  flex: none;
+  display: flex;
+}
+
+.leftContainer button:not(:last-of-type) {
+  margin-right: 4px;
+}
+
+.rightContainer button:not(:first-of-type) {
+  margin-left: 4px;
+}
+
+.toolbarContainer button {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.toolbarContainer button:hover {
+  background-color: #424242;
+}
+
+.toolbarContainer button:active {
+  background-color: #303030;
+}
+
+.toolbarContainer .activeTab {
+  background-color: #303030;
+}

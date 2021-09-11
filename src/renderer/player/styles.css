@@ -1,4 +1,11 @@
-canvas {
-  width: 100%;
+.gameClient {
+  flex: 1 1 auto;
+  position: relative;
+}
+
+.gameClient canvas {
   margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

@@ -1,0 +1,72 @@
+.highscoresContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  font-size: 1.5rem;
+  color: white;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.dataContainer {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: calc(12rem / 16);
+  font-family: monospace;
+  overflow: auto;
+}
+
+.dataHeader {
+  display: flex;
+  font-family: monospace;
+  font-size: calc(12rem / 16);
+  font-weight: bold;
+  color: white;
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 16px;
+}
+
+.row {
+  display: flex;
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 16px;
+}
+
+.row:nth-child(even) {
+  background-color: #333333;
+}
+
+.row:nth-child(odd) {
+  background-color: #292929;
+}
+
+.rank {
+  flex: none;
+  width: 3ch;
+}
+
+.name {
+  flex: 1 1 auto;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.levelContainer {
+  flex: none;
+  display: flex;
+  width: 17ch;
+}
+
+.level {
+  color: white;
+}
+
+.exp {
+  color: white;
+}

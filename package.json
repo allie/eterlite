@@ -11,7 +11,7 @@
     "package": "node -r @babel/register ./.erb/scripts/clean.js dist release && yarn build && electron-builder build --publish never",
     "postinstall": "node -r @babel/register .erb/scripts/check-native-dep.js && electron-builder install-app-deps && yarn cross-env NODE_ENV=development webpack --config ./.erb/configs/webpack.config.renderer.dev.dll.babel.js && opencollective-postinstall && yarn-deduplicate yarn.lock",
     "start": "node -r @babel/register ./.erb/scripts/check-port-in-use.js && yarn start:renderer",
-    "start:main": "cross-env NODE_ENV=development electron -r ./.erb/scripts/babel-register ./src/main/main.ts",
+    "start:main": "cross-env NODE_ENV=development electron -r ./.erb/scripts/babel-register ./src/main/main.js",
     "start:renderer": "cross-env NODE_ENV=development webpack serve --config ./.erb/configs/webpack.config.renderer.dev.babel.js",
     "test": "jest"
   },
@@ -229,6 +229,7 @@
     "mini-css-extract-plugin": "^1.6.0",
     "opencollective-postinstall": "^2.0.3",
     "prettier": "^2.2.1",
+    "prop-types": "^15.7.2",
     "react-refresh": "^0.10.0",
     "react-test-renderer": "^17.0.2",
     "rimraf": "^3.0.0",

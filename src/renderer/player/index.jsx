@@ -1,20 +1,11 @@
 import React from 'react';
-import './styles.css';
+import styles from './styles.css';
 
 export default function Player() {
+  const gameInstanceRef = React.useRef();
+
   React.useEffect(() => {
     window.devicePixelRatio = 1;
-
-    window.UnityLoader.instantiate(
-      'game-client',
-      'http://play.eterspire.com/Build/Eterspire.json',
-      (gameInstance, progress) => {
-        // if (!gameInstance.Module) {
-        //   return;
-        // }
-        // TODO: do something with the loading progress value
-      }
-    );
 
     // TODO: replace this with a local config file
     window.setCookie = (name, value, days) => {
@@ -40,24 +31,46 @@ export default function Player() {
           return c.substring(nameEQ.length, c.length);
         }
       }
-      return 1;
+      return 0;
     };
 
     // Toggle between fullscreen and windowed
-    window.resizeScreen = (fullScreen) => {
-      // TODO
+    window.resizeScreen = (fullscreen) => {
+      window.electron.ipcRenderer.toggleFullscreen(fullscreen);
     };
 
     window.OpenFeedbackForm = () => {
-      // ipcRenderer.send('open-external-link', 'https://forms.gle/wtd1jbup18qxLamP9');
+      window.electron.ipcRenderer.openExternalLink(
+        'https://forms.gle/wtd1jbup18qxLamP9'
+      );
     };
 
     function resizeCanvas() {
+      // TODO: rework this hack
+      if (window.sidebarWasToggled) {
+        window.sidebarWasToggled = false;
+        return;
+      }
+
       const height = window.innerHeight < 600 ? 600 : window.innerHeight;
+      const width = document.getElementById('gameClient').clientWidth;
       document
         .querySelector('canvas')
-        ?.setAttribute('style', `height: ${height}px;`);
+        ?.setAttribute('style', `width: ${width}px; height: ${height - 32}px;`);
     }
+
+    gameInstanceRef.current = window.UnityLoader.instantiate(
+      'gameClient',
+      'http://play.eterspire.com/Build/Eterspire.json',
+      {
+        onProgress(gameInstance, progress) {
+          // if (!gameInstance.Module) {
+          //   return;
+          // }
+          // TODO: do something with the loading progress value
+        },
+      }
+    );
 
     window.addEventListener('resize', resizeCanvas);
 
@@ -71,5 +84,5 @@ export default function Player() {
     };
   }, []);
 
-  return <div id="game-client" />;
+  return <div className={styles.gameClient} id="gameClient" />;
 }
