@@ -4,13 +4,6 @@
   height: 100%;
 }
 
-.header {
-  font-size: 1.5rem;
-  color: white;
-  padding: 8px;
-  margin-bottom: 8px;
-}
-
 .dataContainer {
   display: flex;
   flex-direction: column;

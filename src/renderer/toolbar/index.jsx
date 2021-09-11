@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { useSidebar } from 'renderer/sidebar/context';
+import { usePlugins } from 'renderer/context/plugins';
 
 import styles from './styles.css';
 
 export default function Toolbar() {
-  const { sidebarIsOpen, toggleSidebar } = useSidebar();
+  const { enabledPlugins, pluginPanel, togglePluginPanel } = usePlugins();
 
   return (
     <div className={styles.toolbarContainer}>
@@ -112,13 +112,16 @@ export default function Toolbar() {
         </button>
       </div>
       <div className={styles.rightContainer}>
-        <button
-          type="button"
-          className={sidebarIsOpen && styles.activeTab}
-          onClick={() => toggleSidebar(!sidebarIsOpen)}
-        >
-          <img src="assets/images/highscores.png" alt="Highscores" />
-        </button>
+        {enabledPlugins.map((plugin) => (
+          <button
+            key={plugin.name}
+            type="button"
+            className={pluginPanel?.name === plugin.name && styles.activePlugin}
+            onClick={() => togglePluginPanel(plugin.name)}
+          >
+            {plugin.icon}
+          </button>
+        ))}
       </div>
     </div>
   );

@@ -3,19 +3,20 @@ import React from 'react';
 import Toolbar from './toolbar';
 import Sidebar from './sidebar';
 import Player from './player';
-import { SidebarProvider, useSidebar } from './sidebar/context';
 
 import styles from './styles.css';
+import { PluginsProvider, usePlugins } from './context/plugins';
 
 function Layout() {
-  const { sidebarIsOpen } = useSidebar();
+  const { pluginPanel } = usePlugins();
+  console.log('panel from layout', pluginPanel);
 
   return (
     <div className={styles.appContainer}>
       <Toolbar />
       <div className={styles.bottomContainer}>
         <Player />
-        {sidebarIsOpen && <Sidebar />}
+        {pluginPanel && <Sidebar />}
       </div>
     </div>
   );
@@ -23,8 +24,8 @@ function Layout() {
 
 export default function App() {
   return (
-    <SidebarProvider>
+    <PluginsProvider>
       <Layout />
-    </SidebarProvider>
+    </PluginsProvider>
   );
 }
