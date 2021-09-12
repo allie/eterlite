@@ -22,6 +22,10 @@ function Layout() {
 }
 
 export default function App() {
+  React.useEffect(() => {
+    window.electron.ipcRenderer.firstRenderFinished();
+  }, []);
+
   return (
     <PluginsProvider>
       <Layout />

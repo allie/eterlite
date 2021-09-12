@@ -11,6 +11,9 @@ contextBridge.exposeInMainWorld('electron', {
     openExternalLink(url) {
       ipcRenderer.send('open-external-link', url);
     },
+    firstRenderFinished() {
+      ipcRenderer.send('first-render');
+    },
     on(channel, func) {
       const validChannels = ['ipc-example'];
       if (validChannels.includes(channel)) {

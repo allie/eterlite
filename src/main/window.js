@@ -8,9 +8,11 @@ const windowController = {
   sidebarOpen: false,
   minWidth: 0, // minimum width including window decoration
   minHeight: 0, // minimum height including window decoration
+  ready: false,
 
   init() {
     this.window = new BrowserWindow({
+      show: false,
       useContentSize: true,
       width: 899,
       height: 632,
@@ -45,6 +47,11 @@ const windowController = {
 
     ipcMain.on('fullscreen', (event, fullscreen) => {
       this.window.setFullScreen(fullscreen);
+    });
+
+    ipcMain.on('first-render', (event) => {
+      this.ready = true;
+      this.window.show();
     });
 
     if (process.env.NODE_ENV === 'development') {
