@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import useEaseValue from 'renderer/utils/ease-value';
 import styles from './styles.css';
 
+const delays = Array(12)
+  .fill(true)
+  .map((item) => Math.floor(Math.random() * 1000));
+
 export default function LoadingScreen({ loading, progress }) {
   const [show, setShow] = React.useState(true);
   const easedProgress = useEaseValue(progress, 200);
@@ -33,6 +37,9 @@ export default function LoadingScreen({ loading, progress }) {
             // eslint-disable-next-line react/no-array-index-key
             key={`ray${i}`}
             className={`${styles.ray} ${styles[`ray${i}`]}`}
+            style={{
+              animationDelay: `-${delays[i]}ms`,
+            }}
           />
         ));
     }
