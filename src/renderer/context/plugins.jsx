@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import SettingsPlugin from 'renderer/plugins/settings';
 import HighscoresPlugin from 'renderer/plugins/highscores';
 
 const ALL_PLUGINS = [
+  {
+    module: SettingsPlugin,
+    defaultEnabled: true,
+    canToggle: false,
+  },
   {
     module: HighscoresPlugin,
     defaultEnabled: true,

@@ -62,7 +62,7 @@ export default function Player() {
         .querySelector('canvas')
         ?.setAttribute(
           'style',
-          `width: ${width - 1}px; height: ${height - 74}px;`
+          `width: ${width - 1}px; height: ${height - 75}px;`
         );
     }
 

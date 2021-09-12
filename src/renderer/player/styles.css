@@ -6,7 +6,7 @@
   border-image-source: url(../../../assets/images/border3.png) !important;
   border-image-slice: 12 fill !important;
   border-image-repeat: repeat !important;
-  border-image-outset: 2px 1px !important;
+  border-image-outset: 2px 1px 1px 1px !important;
   box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
 }
 

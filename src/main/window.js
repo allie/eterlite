@@ -15,10 +15,10 @@ const windowController = {
       autoHideMenuBar: true,
       show: false,
       useContentSize: true,
-      width: 899,
+      width: 927,
       height: 632,
-      minWidth: 899,
-      minHeight: 632,
+      minWidth: 927,
+      minHeight: 675,
       backgroundColor: '#000000',
       title: 'Eterlite',
       webPreferences: {

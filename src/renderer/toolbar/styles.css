@@ -5,9 +5,9 @@
   border-image-source: url(../../../assets/images/border2.png);
   border-image-slice: 12 fill;
   border-image-repeat: repeat;
-  border-image-outset: 2px 1px 3px 1px;
+  border-image-outset: 1px 1px 3px 1px;
   padding-right: 1px;
-  height: 49px;
+  height: 50px;
   box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -21,9 +21,9 @@
 }
 
 .toolsContainer {
-  margin-right: 4px;
-  padding-right: 4px;
-  border-right: 2px solid #959595;
+  margin-right: 3px;
+  padding-right: 3px;
+  border-right: 2px solid rgba(149, 149, 149, 0.6);
 }
 
 .leftContainer,
@@ -34,12 +34,12 @@
 }
 
 .leftContainer button:not(:last-of-type) {
-  margin-right: 4px;
+  margin-right: 3px;
 }
 
 .pluginsContainer button:not(:first-of-type),
 .toolsContainer button:not(:first-of-type) {
-  margin-left: 4px;
+  margin-left: 3px;
 }
 
 .toolbarContainer button {
