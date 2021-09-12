@@ -1,3 +1,30 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .loadingContainer {
   position: absolute;
   top: 0;
@@ -30,15 +57,6 @@
   top: calc(50% - 61px);
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .spin {
   animation: spin 6s infinite linear;
 }
@@ -55,16 +73,7 @@
   position: absolute;
   left: calc(50% - 61px);
   top: calc(50% - 61px);
-  animation: fadeIn 1s;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  animation: fadeIn 1s ease-in-out, grow 1s ease-in-out;
 }
 
 .ray0 {

@@ -70,12 +70,8 @@ export default function Player() {
       'gameClient',
       'http://play.eterspire.com/Build/Eterspire.json',
       {
-        onProgress(gameInstance, progress) {
-          // if (!gameInstance.Module) {
-          //   return;
-          // }
-          setProgress(progress);
-          console.log(progress);
+        onProgress(gameInstance, newProgress) {
+          setProgress(newProgress);
         },
       }
     );
