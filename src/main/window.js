@@ -12,6 +12,7 @@ const windowController = {
 
   init() {
     this.window = new BrowserWindow({
+      autoHideMenuBar: true,
       show: false,
       useContentSize: true,
       width: 899,
@@ -22,6 +23,7 @@ const windowController = {
       title: 'Eterlite',
       webPreferences: {
         preload: path.join(__dirname, 'preload.js'),
+        backgroundThrottling: false,
       },
     });
 
