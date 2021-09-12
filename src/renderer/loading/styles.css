@@ -28,7 +28,6 @@
   position: absolute;
   left: calc(50% - 61px);
   top: calc(50% - 61px);
-  animation: spin 6s infinite linear;
 }
 
 @keyframes spin {
@@ -40,7 +39,78 @@
   }
 }
 
+.spin {
+  animation: spin 6s infinite linear;
+}
+
 .finished {
   opacity: 0;
   pointer-events: none;
+}
+
+.ray {
+  background-size: 100%;
+  width: 122px;
+  height: 122px;
+  position: absolute;
+  left: calc(50% - 61px);
+  top: calc(50% - 61px);
+  animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.ray0 {
+  background-image: url(../../../assets/images/loading_0.png);
+}
+
+.ray1 {
+  background-image: url(../../../assets/images/loading_1.png);
+}
+
+.ray2 {
+  background-image: url(../../../assets/images/loading_2.png);
+}
+
+.ray3 {
+  background-image: url(../../../assets/images/loading_3.png);
+}
+
+.ray4 {
+  background-image: url(../../../assets/images/loading_4.png);
+}
+
+.ray5 {
+  background-image: url(../../../assets/images/loading_5.png);
+}
+
+.ray6 {
+  background-image: url(../../../assets/images/loading_6.png);
+}
+
+.ray7 {
+  background-image: url(../../../assets/images/loading_7.png);
+}
+
+.ray8 {
+  background-image: url(../../../assets/images/loading_8.png);
+}
+
+.ray9 {
+  background-image: url(../../../assets/images/loading_9.png);
+}
+
+.ray10 {
+  background-image: url(../../../assets/images/loading_10.png);
+}
+
+.ray11 {
+  background-image: url(../../../assets/images/loading_11.png);
 }

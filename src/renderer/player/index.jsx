@@ -6,7 +6,7 @@ import styles from './styles.css';
 
 export default function Player() {
   const gameInstanceRef = React.useRef();
-  const [loading, setLoading] = React.useState(true);
+  const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
     window.devicePixelRatio = 1;
@@ -74,9 +74,8 @@ export default function Player() {
           // if (!gameInstance.Module) {
           //   return;
           // }
-          if (progress === 1) {
-            setLoading(false);
-          }
+          setProgress(progress);
+          console.log(progress);
         },
       }
     );
@@ -91,11 +90,11 @@ export default function Player() {
     return () => {
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, [setLoading]);
+  }, [setProgress]);
 
   return (
     <>
-      <LoadingScreen loading={loading} />
+      <LoadingScreen progress={progress} />
       <div className={styles.gameClient} id="gameClient" />
     </>
   );

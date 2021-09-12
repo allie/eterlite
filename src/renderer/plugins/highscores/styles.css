@@ -31,14 +31,6 @@
   height: 16px;
 }
 
-.row:nth-child(even) {
-  /* background-color: #333333; */
-}
-
-.row:nth-child(odd) {
-  /* background-color: #292929; */
-}
-
 .rank {
   flex: none;
   width: 3ch;
