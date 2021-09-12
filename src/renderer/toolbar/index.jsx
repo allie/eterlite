@@ -1,11 +1,13 @@
 import React from 'react';
 
 import { usePlugins } from 'renderer/context/plugins';
+import { useTools } from 'renderer/context/tools';
 
 import styles from './styles.css';
 
 export default function Toolbar() {
   const { enabledPlugins, pluginPanel, togglePluginPanel } = usePlugins();
+  const { enabledTools } = useTools();
 
   return (
     <div className={styles.toolbarContainer}>
@@ -111,7 +113,14 @@ export default function Toolbar() {
           <img src="assets/images/patreon.png" alt="Support Eterspire" />
         </button>
       </div>
-      <div className={styles.rightContainer}>
+      <div className={styles.toolsContainer}>
+        {enabledTools.map((tool) => (
+          <button key={tool.name} type="button" onClick={() => tool.onClick()}>
+            {tool.icon}
+          </button>
+        ))}
+      </div>
+      <div className={styles.pluginsContainer}>
         {enabledPlugins.map((plugin) => (
           <button
             key={plugin.name}

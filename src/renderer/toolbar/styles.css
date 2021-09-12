@@ -1,7 +1,6 @@
 .toolbarContainer {
   flex: none;
   display: flex;
-  justify-content: space-between;
   border: 12px solid transparent;
   border-image-source: url(../../../assets/images/border2.png);
   border-image-slice: 12 fill;
@@ -12,19 +11,35 @@
   box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
 }
 
-.leftContainer,
-.rightContainer {
+.leftContainer {
+  flex: 1 1 auto;
+}
+
+.pluginsContainer,
+.toolsContainer {
   flex: none;
+}
+
+.toolsContainer {
+  margin-right: 4px;
+  padding-right: 4px;
+  border-right: 2px solid #959595;
+}
+
+.leftContainer,
+.pluginsContainer,
+.toolsContainer {
   display: flex;
-  transform: translateY(-1px);
+  transform: translateY(1px);
 }
 
 .leftContainer button:not(:last-of-type) {
-  margin-right: 2px;
+  margin-right: 4px;
 }
 
-.rightContainer button:not(:first-of-type) {
-  margin-left: 2px;
+.pluginsContainer button:not(:first-of-type),
+.toolsContainer button:not(:first-of-type) {
+  margin-left: 4px;
 }
 
 .toolbarContainer button {
@@ -39,6 +54,7 @@
   border-image-slice: 8 fill;
   border-image-repeat: repeat;
   box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
 }
 
 .toolbarContainer button img {
@@ -54,6 +70,8 @@
 
 .toolbarContainer button:active {
   background-color: #303030;
+  transform: translate(1px, -1px);
+  box-shadow: 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .toolbarContainer .activePlugin {

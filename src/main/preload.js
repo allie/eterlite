@@ -8,6 +8,9 @@ contextBridge.exposeInMainWorld('electron', {
     toggleFullscreen(fullscreen) {
       ipcRenderer.send('fullscreen', fullscreen);
     },
+    takeScreenshot() {
+      ipcRenderer.send('screenshot');
+    },
     openExternalLink(url) {
       ipcRenderer.send('open-external-link', url);
     },

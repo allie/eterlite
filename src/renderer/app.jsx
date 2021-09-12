@@ -6,6 +6,7 @@ import Player from './player';
 
 import styles from './styles.css';
 import { PluginsProvider, usePlugins } from './context/plugins';
+import { ToolsProvider } from './context/tools';
 
 function Layout() {
   const { pluginPanel } = usePlugins();
@@ -28,7 +29,9 @@ export default function App() {
 
   return (
     <PluginsProvider>
-      <Layout />
+      <ToolsProvider>
+        <Layout />
+      </ToolsProvider>
     </PluginsProvider>
   );
 }

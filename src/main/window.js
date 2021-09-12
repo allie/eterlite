@@ -51,6 +51,10 @@ const windowController = {
       this.window.setFullScreen(fullscreen);
     });
 
+    ipcMain.on('screenshot', (event) => {
+      this.captureScreenshot();
+    });
+
     ipcMain.on('first-render', (event) => {
       this.ready = true;
       this.window.show();

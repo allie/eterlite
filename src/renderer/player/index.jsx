@@ -72,6 +72,9 @@ export default function Player() {
       {
         onProgress(gameInstance, newProgress) {
           setProgress(newProgress);
+          if (newProgress === 1) {
+            document.getElementById('#canvas').style.display = 'block';
+          }
         },
       }
     );
@@ -79,6 +82,7 @@ export default function Player() {
     window.addEventListener('resize', resizeCanvas);
 
     const canvas = document.getElementById('#canvas');
+    canvas.style.display = 'none';
     canvas.onselectstart = () => false;
 
     resizeCanvas();
