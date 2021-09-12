@@ -25,6 +25,12 @@
   }
 }
 
+@keyframes pulse {
+  to {
+    transform: scale(1.05);
+  }
+}
+
 .loadingContainer {
   position: absolute;
   top: 0;
@@ -73,7 +79,8 @@
   position: absolute;
   left: calc(50% - 61px);
   top: calc(50% - 61px);
-  animation: fadeIn 1s ease-in-out, grow 1s ease-in-out;
+  animation: fadeIn 1s ease-in-out, grow 1s ease-in-out,
+    pulse 0.5s 1s alternate infinite ease-in-out;
 }
 
 .ray0 {
