@@ -15,10 +15,10 @@ const windowController = {
       autoHideMenuBar: true,
       show: false,
       useContentSize: true,
-      width: 927,
-      height: 632,
-      minWidth: 927,
-      minHeight: 675,
+      width: 933,
+      height: 681,
+      minWidth: 933,
+      minHeight: 681,
       backgroundColor: '#000000',
       title: 'Eterlite',
       webPreferences: {
@@ -83,10 +83,10 @@ const windowController = {
     const [cw, ch] = this.window.getContentSize();
     this.window.webContents
       .capturePage({
-        x: 13,
-        y: 62,
-        width: cw - 27 - (this.sidebarOpen ? SIDEBAR_WIDTH : 0),
-        height: ch - 75,
+        x: 16,
+        y: 65,
+        width: cw - 30 - (this.sidebarOpen ? SIDEBAR_WIDTH : 0),
+        height: ch - 78,
       })
       .then((image) => {
         return clipboard.writeImage(image);
