@@ -48,8 +48,10 @@ export default function LoadingScreen({ loading, progress }) {
 
   return (
     <div className={`${styles.loadingContainer} ${!show && styles.finished}`}>
-      {rays}
-      <div className={styles.centre} />
+      <div className={styles.innerContainer}>
+        {rays}
+        <div className={styles.centre} />
+      </div>
     </div>
   );
 }
