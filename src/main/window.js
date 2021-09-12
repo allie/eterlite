@@ -80,8 +80,14 @@ const windowController = {
   },
 
   captureScreenshot() {
+    const [cw, ch] = this.window.getContentSize();
     this.window.webContents
-      .capturePage()
+      .capturePage({
+        x: 13,
+        y: 62,
+        width: cw - 27 - (this.sidebarOpen ? SIDEBAR_WIDTH : 0),
+        height: ch - 75,
+      })
       .then((image) => {
         return clipboard.writeImage(image);
       })
