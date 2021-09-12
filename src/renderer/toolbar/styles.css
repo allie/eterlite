@@ -2,7 +2,7 @@
   flex: none;
   display: flex;
   border: 12px solid transparent;
-  border-image-source: url(../../../assets/images/border2.png);
+  border-image-source: url(assets/images/border2.png);
   border-image-slice: 12 fill;
   border-image-repeat: repeat;
   border-image-outset: 1px 1px 3px 1px;
@@ -50,7 +50,7 @@
   justify-content: center;
   background-color: transparent;
   border: 8px solid transparent;
-  border-image-source: url(../../../assets/images/button_blue.png);
+  border-image-source: url(assets/images/button_blue.png);
   border-image-slice: 8 fill;
   border-image-repeat: repeat;
   box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
@@ -63,7 +63,7 @@
 
 .toolbarContainer button:hover {
   border: 8px solid transparent;
-  border-image-source: url(../../../assets/images/button_blue_shine.png);
+  border-image-source: url(assets/images/button_blue_shine.png);
   border-image-slice: 8 fill;
   border-image-repeat: repeat;
 }
@@ -77,7 +77,7 @@
 .toolbarContainer .activePlugin {
   background-color: #303030;
   border: 8px solid transparent;
-  border-image-source: url(../../../assets/images/button_blue_shine.png);
+  border-image-source: url(assets/images/button_blue_shine.png);
   border-image-slice: 8 fill;
   border-image-repeat: repeat;
 }

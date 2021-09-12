@@ -3,6 +3,17 @@ import React from 'react';
 import { usePlugins } from 'renderer/context/plugins';
 import { useTools } from 'renderer/context/tools';
 
+import homeIcon from 'assets/images/sword.png';
+import newsIcon from 'assets/images/news.png';
+import rulesIcon from 'assets/images/rules.png';
+import bugIcon from 'assets/images/bug.png';
+import feedbackIcon from 'assets/images/feedback.png';
+import wikiIcon from 'assets/images/wiki.png';
+import discordIcon from 'assets/images/discord.png';
+import twitterIcon from 'assets/images/twitter.png';
+import redditIcon from 'assets/images/reddit.png';
+import patreonIcon from 'assets/images/patreon.png';
+
 import styles from './styles.css';
 
 export default function Toolbar() {
@@ -20,7 +31,7 @@ export default function Toolbar() {
             )
           }
         >
-          <img src="assets/images/sword.png" alt="Eterspire Website" />
+          <img src={homeIcon} alt="Eterspire Website" />
         </button>
         <button
           type="button"
@@ -30,7 +41,7 @@ export default function Toolbar() {
             )
           }
         >
-          <img src="assets/images/news.png" alt="News and Updates" />
+          <img src={newsIcon} alt="News and Updates" />
         </button>
         <button
           type="button"
@@ -40,7 +51,7 @@ export default function Toolbar() {
             )
           }
         >
-          <img src="assets/images/rules.png" alt="Rules" />
+          <img src={rulesIcon} alt="Rules" />
         </button>
         <button
           type="button"
@@ -50,7 +61,7 @@ export default function Toolbar() {
             )
           }
         >
-          <img src="assets/images/bug.png" alt="Report a Bug" />
+          <img src={bugIcon} alt="Report a Bug" />
         </button>
         <button
           type="button"
@@ -60,7 +71,7 @@ export default function Toolbar() {
             )
           }
         >
-          <img src="assets/images/feedback.png" alt="Submit Feedback" />
+          <img src={feedbackIcon} alt="Submit Feedback" />
         </button>
         <button
           type="button"
@@ -70,7 +81,7 @@ export default function Toolbar() {
             )
           }
         >
-          <img src="assets/images/wiki.png" alt="Wiki" />
+          <img src={wikiIcon} alt="Wiki" />
         </button>
         <button
           type="button"
@@ -80,7 +91,7 @@ export default function Toolbar() {
             )
           }
         >
-          <img src="assets/images/discord.png" alt="Discord" />
+          <img src={discordIcon} alt="Discord" />
         </button>
         <button
           type="button"
@@ -90,7 +101,7 @@ export default function Toolbar() {
             )
           }
         >
-          <img src="assets/images/twitter.png" alt="Twitter" />
+          <img src={twitterIcon} alt="Twitter" />
         </button>
         <button
           type="button"
@@ -100,7 +111,7 @@ export default function Toolbar() {
             )
           }
         >
-          <img src="assets/images/reddit.png" alt="Reddit" />
+          <img src={redditIcon} alt="Reddit" />
         </button>
         <button
           type="button"
@@ -110,7 +121,7 @@ export default function Toolbar() {
             )
           }
         >
-          <img src="assets/images/patreon.png" alt="Support Eterspire" />
+          <img src={patreonIcon} alt="Support Eterspire" />
         </button>
       </div>
       <div className={styles.toolsContainer}>

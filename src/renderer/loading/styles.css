@@ -45,12 +45,12 @@
   height: 100%;
   z-index: 1;
   transition: opacity 1s;
-  background-image: url(../../../assets/images/loading_bg.png);
+  background-image: url(assets/images/loading_bg.png);
   background-size: cover;
 }
 
 .centre {
-  background-image: url(../../../assets/images/loading_centre.png);
+  background-image: url(assets/images/loading_centre.png);
   background-size: 100%;
   width: 122px;
   height: 122px;
@@ -62,7 +62,7 @@
 }
 
 .circle {
-  background-image: url(../../../assets/images/loading_circle.png);
+  background-image: url(assets/images/loading_circle.png);
   background-size: 100%;
   width: 122px;
   height: 122px;
@@ -91,49 +91,49 @@
 }
 
 .ray0 {
-  background-image: url(../../../assets/images/loading_0.png);
+  background-image: url(assets/images/loading_0.png);
 }
 
 .ray1 {
-  background-image: url(../../../assets/images/loading_1.png);
+  background-image: url(assets/images/loading_1.png);
 }
 
 .ray2 {
-  background-image: url(../../../assets/images/loading_2.png);
+  background-image: url(assets/images/loading_2.png);
 }
 
 .ray3 {
-  background-image: url(../../../assets/images/loading_3.png);
+  background-image: url(assets/images/loading_3.png);
 }
 
 .ray4 {
-  background-image: url(../../../assets/images/loading_4.png);
+  background-image: url(assets/images/loading_4.png);
 }
 
 .ray5 {
-  background-image: url(../../../assets/images/loading_5.png);
+  background-image: url(assets/images/loading_5.png);
 }
 
 .ray6 {
-  background-image: url(../../../assets/images/loading_6.png);
+  background-image: url(assets/images/loading_6.png);
 }
 
 .ray7 {
-  background-image: url(../../../assets/images/loading_7.png);
+  background-image: url(assets/images/loading_7.png);
 }
 
 .ray8 {
-  background-image: url(../../../assets/images/loading_8.png);
+  background-image: url(assets/images/loading_8.png);
 }
 
 .ray9 {
-  background-image: url(../../../assets/images/loading_9.png);
+  background-image: url(assets/images/loading_9.png);
 }
 
 .ray10 {
-  background-image: url(../../../assets/images/loading_10.png);
+  background-image: url(assets/images/loading_10.png);
 }
 
 .ray11 {
-  background-image: url(../../../assets/images/loading_11.png);
+  background-image: url(assets/images/loading_11.png);
 }
