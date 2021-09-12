@@ -32,19 +32,7 @@ const windowController = {
     this.minHeight = height;
 
     ipcMain.on('sidebar', (event, isOpen) => {
-      const [cw, ch] = this.window.getContentSize();
-      if (isOpen && !this.sidebarOpen) {
-        this.window.setContentSize(cw + SIDEBAR_WIDTH, ch);
-        this.window.setMinimumSize(
-          this.minWidth + SIDEBAR_WIDTH,
-          this.minHeight
-        );
-      } else if (!isOpen && this.sidebarOpen) {
-        const [w, h] = this.window.getSize();
-        this.window.setMinimumSize(this.minWidth, this.minHeight);
-        this.window.setSize(w - SIDEBAR_WIDTH, h);
-      }
-      this.sidebarOpen = isOpen;
+      this.toggleSidebar(isOpen);
     });
 
     ipcMain.on('fullscreen', (event, fullscreen) => {
@@ -60,6 +48,12 @@ const windowController = {
       this.window.show();
     });
 
+    // Close the sidebar on reload
+    // TODO: Remove this and load sidebar state from config file instead
+    this.window.webContents.on('did-start-loading', () => {
+      this.toggleSidebar(false);
+    });
+
     if (process.env.NODE_ENV === 'development') {
       const port = process.env.PORT || 1212;
       const url = new URL(`http://localhost:${port}`);
@@ -70,6 +64,19 @@ const windowController = {
         `file://${path.resolve(__dirname, '../renderer/', 'index.html')}`
       );
     }
+  },
+
+  toggleSidebar(isOpen) {
+    const [cw, ch] = this.window.getContentSize();
+    if (isOpen && !this.sidebarOpen) {
+      this.window.setContentSize(cw + SIDEBAR_WIDTH, ch);
+      this.window.setMinimumSize(this.minWidth + SIDEBAR_WIDTH, this.minHeight);
+    } else if (!isOpen && this.sidebarOpen) {
+      const [w, h] = this.window.getSize();
+      this.window.setMinimumSize(this.minWidth, this.minHeight);
+      this.window.setSize(w - SIDEBAR_WIDTH, h);
+    }
+    this.sidebarOpen = isOpen;
   },
 
   captureScreenshot() {
