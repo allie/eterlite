@@ -9,7 +9,6 @@ import { PluginsProvider, usePlugins } from './context/plugins';
 
 function Layout() {
   const { pluginPanel } = usePlugins();
-  console.log('panel from layout', pluginPanel);
 
   return (
     <div className={styles.appContainer}>

@@ -52,7 +52,7 @@ const HighscoresPlugin = {
               <div className={styles.levelContainer}>
                 <span className={styles.level}>{player.level}</span>
                 &nbsp;
-                <span className={styles.exp}>{`(+${player.exp} exp)`}</span>
+                <span className={styles.exp}>{`(+${player.exp} xp)`}</span>
               </div>
             </div>
           ))}

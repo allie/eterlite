@@ -1,0 +1,46 @@
+.loadingContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: opacity 1s;
+  background-image: url(../../../assets/images/loading_bg.png);
+  background-size: cover;
+}
+
+.centre {
+  background-image: url(../../../assets/images/loading_centre.png);
+  background-size: 100%;
+  width: 122px;
+  height: 122px;
+  position: absolute;
+  left: calc(50% - 61px);
+  top: calc(50% - 61px);
+}
+
+.circle {
+  background-image: url(../../../assets/images/loading_circle.png);
+  background-size: 100%;
+  width: 122px;
+  height: 122px;
+  position: absolute;
+  left: calc(50% - 61px);
+  top: calc(50% - 61px);
+  animation: spin 6s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.finished {
+  opacity: 0;
+  pointer-events: none;
+}

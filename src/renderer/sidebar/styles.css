@@ -3,14 +3,15 @@
   width: 320px;
   flex: none;
   display: flex;
-  margin-right: 1px;
+  transform: translateX(-1px);
   flex-direction: column;
   border: 12px solid transparent;
   border-image-source: url(../../../assets/images/border1.png);
   border-image-slice: 12 fill;
   border-image-repeat: repeat;
-  border-image-outset: 4px 0 0 4px;
-  padding: 0px 4px 4px 0;
+  border-image-outset: 2px 2px 2px 3px;
+  padding: 1px 0px;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
 }
 
 .panelArea {
@@ -28,4 +29,5 @@
   border-image-source: url(../../../assets/images/highlight_back.png);
   border-image-slice: 8 fill;
   border-image-repeat: repeat;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
 }

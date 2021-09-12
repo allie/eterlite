@@ -1,8 +1,12 @@
 import React from 'react';
+
+import LoadingScreen from '../loading';
+
 import styles from './styles.css';
 
 export default function Player() {
   const gameInstanceRef = React.useRef();
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     window.devicePixelRatio = 1;
@@ -58,7 +62,7 @@ export default function Player() {
         .querySelector('canvas')
         ?.setAttribute(
           'style',
-          `width: ${width + 1}px; height: ${height - 71}px;`
+          `width: ${width - 1}px; height: ${height - 74}px;`
         );
     }
 
@@ -70,7 +74,9 @@ export default function Player() {
           // if (!gameInstance.Module) {
           //   return;
           // }
-          // TODO: do something with the loading progress value
+          if (progress === 1) {
+            setLoading(false);
+          }
         },
       }
     );
@@ -85,7 +91,12 @@ export default function Player() {
     return () => {
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, []);
+  }, [setLoading]);
 
-  return <div className={styles.gameClient} id="gameClient" />;
+  return (
+    <>
+      <LoadingScreen loading={loading} />
+      <div className={styles.gameClient} id="gameClient" />
+    </>
+  );
 }
