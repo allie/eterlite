@@ -27,7 +27,13 @@
 
 @keyframes pulse {
   to {
-    transform: scale(1.05);
+    transform: scale(1.1);
+  }
+}
+
+@keyframes sway {
+  to {
+    transform: rotate(3deg);
   }
 }
 
@@ -51,6 +57,8 @@
   position: absolute;
   left: calc(50% - 61px);
   top: calc(50% - 61px);
+  transform: rotate(-3deg);
+  animation: sway 0.5s alternate infinite ease-in-out;
 }
 
 .circle {
@@ -79,8 +87,7 @@
   position: absolute;
   left: calc(50% - 61px);
   top: calc(50% - 61px);
-  animation: fadeIn 1s ease-in-out, grow 1s ease-in-out,
-    pulse 0.5s 1s alternate infinite ease-in-out;
+  animation: pulse 0.5s alternate infinite ease-in-out;
 }
 
 .ray0 {
