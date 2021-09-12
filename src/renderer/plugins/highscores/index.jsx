@@ -3,6 +3,8 @@ import styles from './styles.css';
 
 import icon from './icon.png';
 
+const placeStyles = [styles.first, styles.second, styles.third];
+
 const HighscoresPlugin = {
   name: 'Highscores',
   version: '0.1.0',
@@ -42,17 +44,23 @@ const HighscoresPlugin = {
         <div className={styles.dataHeader}>
           <span className={styles.rank}>#</span>
           <span className={styles.name}>Player</span>
-          <div className={styles.levelContainer}>Level</div>
+          <div className={styles.levelHeader}>Level</div>
         </div>
         <div className={styles.dataContainer}>
           {data.map((player, i) => (
             <div className={styles.row} key={player.name}>
               <span className={styles.rank}>{i + 1}</span>
-              <span className={styles.name}>{player.name}</span>
+              <span className={`${styles.name} ${i < 3 && placeStyles[i]}`}>
+                {player.name}
+              </span>
               <div className={styles.levelContainer}>
                 <span className={styles.level}>{player.level}</span>
                 &nbsp;
-                <span className={styles.exp}>{`(+${player.exp} xp)`}</span>
+                <span className={styles.exp}>
+                  +&nbsp;
+                  <span className={styles.innerExp}>{player.exp}</span>
+                  &nbsp;xp
+                </span>
               </div>
             </div>
           ))}

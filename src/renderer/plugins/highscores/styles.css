@@ -50,16 +50,48 @@
   margin-right: 16px;
 }
 
+.levelHeader {
+  flex: none;
+  display: flex;
+  width: 13ch;
+  /* TODO: don't offset for the scrollbar, figure out a better solution */
+  margin-right: 17px;
+}
+
 .levelContainer {
   flex: none;
   display: flex;
-  width: 16ch;
+  width: 13ch;
 }
 
 .level {
-  color: black;
+  color: maroon;
+  font-weight: bold;
 }
 
 .exp {
-  color: black;
+  color: grey;
+  font-size: calc(10rem / 16);
+}
+
+.innerExp {
+  width: 6ch;
+}
+
+.first,
+.second,
+.third {
+  font-weight: bold;
+}
+
+.first {
+  color: orange;
+}
+
+.second {
+  color: grey;
+}
+
+.third {
+  color: maroon;
 }
