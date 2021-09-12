@@ -9,12 +9,18 @@ const delays = Array(12)
 
 export default function LoadingScreen({ loading, progress }) {
   const [show, setShow] = React.useState(true);
+  const [finished, setFinished] = React.useState(false);
   const easedProgress = useEaseValue(progress, 200);
 
   React.useEffect(() => {
     if (easedProgress !== undefined) {
       if (easedProgress === 1) {
-        return setTimeout(() => setShow(false), 1000);
+        return setTimeout(() => {
+          setShow(false);
+          setTimeout(() => {
+            setFinished(true);
+          }, 1100);
+        }, 1000);
       }
       return setShow(true);
     }
@@ -26,7 +32,7 @@ export default function LoadingScreen({ loading, progress }) {
     setShow(false);
 
     return () => {};
-  }, [easedProgress, loading]);
+  }, [easedProgress, loading, setFinished]);
 
   const rays = React.useMemo(() => {
     if (easedProgress !== undefined) {
@@ -46,14 +52,14 @@ export default function LoadingScreen({ loading, progress }) {
     return <div className={styles.spin} />;
   }, [easedProgress]);
 
-  return (
+  return !finished ? (
     <div className={`${styles.loadingContainer} ${!show && styles.finished}`}>
       <div className={styles.innerContainer}>
         {rays}
         <div className={styles.centre} />
       </div>
     </div>
-  );
+  ) : null;
 }
 
 LoadingScreen.propTypes = {
