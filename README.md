@@ -2,6 +2,9 @@
 
 Eterlite is an Electron wrapper around the browser-based MMO [Eterspire](https://eterspire.com), with some handy extra features.
 
+
+<img src="https://i.imgur.com/eEGPgl1.png" />
+
 ## Development
 
 ### Setup
