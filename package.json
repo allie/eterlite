@@ -237,6 +237,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
+    "react-tooltip": "^4.2.21",
     "regenerator-runtime": "^0.13.5"
   },
   "devEngines": {

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 
 import Toolbar from './toolbar';
 import Sidebar from './sidebar';
@@ -28,10 +29,13 @@ export default function App() {
   }, []);
 
   return (
-    <PluginsProvider>
-      <ToolsProvider>
-        <Layout />
-      </ToolsProvider>
-    </PluginsProvider>
+    <>
+      <PluginsProvider>
+        <ToolsProvider>
+          <Layout />
+        </ToolsProvider>
+      </PluginsProvider>
+      <ReactTooltip delayShow={1000} />
+    </>
   );
 }

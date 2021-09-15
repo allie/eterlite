@@ -24,6 +24,10 @@ export default function Toolbar() {
     <div className={styles.toolbarContainer}>
       <div className={styles.leftContainer}>
         <button
+          data-tip="Eterspire Home"
+          data-place="right"
+          data-effect="solid"
+          data-offset="{'top': -33, 'left': 47}"
           type="button"
           onClick={() =>
             window.electron.ipcRenderer.openExternalLink(
@@ -34,6 +38,10 @@ export default function Toolbar() {
           <img src={homeIcon} alt="Eterspire Website" />
         </button>
         <button
+          data-tip="News &amp; Updates"
+          data-place="bottom"
+          data-effect="solid"
+          data-offset="{'top': 4}"
           type="button"
           onClick={() =>
             window.electron.ipcRenderer.openExternalLink(
@@ -44,6 +52,10 @@ export default function Toolbar() {
           <img src={newsIcon} alt="News and Updates" />
         </button>
         <button
+          data-tip="Rules"
+          data-place="bottom"
+          data-effect="solid"
+          data-offset="{'top': 4}"
           type="button"
           onClick={() =>
             window.electron.ipcRenderer.openExternalLink(
@@ -54,6 +66,10 @@ export default function Toolbar() {
           <img src={rulesIcon} alt="Rules" />
         </button>
         <button
+          data-tip="Report a Bug"
+          data-place="bottom"
+          data-effect="solid"
+          data-offset="{'top': 4}"
           type="button"
           onClick={() =>
             window.electron.ipcRenderer.openExternalLink(
@@ -64,6 +80,10 @@ export default function Toolbar() {
           <img src={bugIcon} alt="Report a Bug" />
         </button>
         <button
+          data-tip="Submit Feedback"
+          data-place="bottom"
+          data-effect="solid"
+          data-offset="{'top': 4}"
           type="button"
           onClick={() =>
             window.electron.ipcRenderer.openExternalLink(
@@ -74,6 +94,10 @@ export default function Toolbar() {
           <img src={feedbackIcon} alt="Submit Feedback" />
         </button>
         <button
+          data-tip="Eterspire Wiki"
+          data-place="bottom"
+          data-effect="solid"
+          data-offset="{'top': 4}"
           type="button"
           onClick={() =>
             window.electron.ipcRenderer.openExternalLink(
@@ -84,6 +108,10 @@ export default function Toolbar() {
           <img src={wikiIcon} alt="Wiki" />
         </button>
         <button
+          data-tip="Discord"
+          data-place="bottom"
+          data-effect="solid"
+          data-offset="{'top': 4}"
           type="button"
           onClick={() =>
             window.electron.ipcRenderer.openExternalLink(
@@ -94,6 +122,10 @@ export default function Toolbar() {
           <img src={discordIcon} alt="Discord" />
         </button>
         <button
+          data-tip="Twitter"
+          data-place="bottom"
+          data-effect="solid"
+          data-offset="{'top': 4}"
           type="button"
           onClick={() =>
             window.electron.ipcRenderer.openExternalLink(
@@ -104,6 +136,10 @@ export default function Toolbar() {
           <img src={twitterIcon} alt="Twitter" />
         </button>
         <button
+          data-tip="Reddit"
+          data-place="bottom"
+          data-effect="solid"
+          data-offset="{'top': 4}"
           type="button"
           onClick={() =>
             window.electron.ipcRenderer.openExternalLink(
@@ -114,6 +150,10 @@ export default function Toolbar() {
           <img src={redditIcon} alt="Reddit" />
         </button>
         <button
+          data-tip="Support Eterspire"
+          data-place="bottom"
+          data-effect="solid"
+          data-offset="{'top': 4}"
           type="button"
           onClick={() =>
             window.electron.ipcRenderer.openExternalLink(
@@ -126,17 +166,35 @@ export default function Toolbar() {
       </div>
       <div className={styles.toolsContainer}>
         {enabledTools.map((tool) => (
-          <button key={tool.name} type="button" onClick={() => tool.onClick()}>
+          <button
+            key={tool.name}
+            data-tip={tool.tooltip || tool.name}
+            data-place="bottom"
+            data-effect="solid"
+            data-offset="{'top': 4}"
+            type="button"
+            onClick={() => tool.onClick()}
+          >
             {tool.icon}
           </button>
         ))}
       </div>
       <div className={styles.pluginsContainer}>
-        {enabledPlugins.map((plugin) => (
+        {enabledPlugins.map((plugin, i) => (
           <button
             key={plugin.name}
+            data-tip={plugin.tooltip || plugin.name}
+            data-place={i === enabledPlugins.length - 1 ? 'left' : 'bottom'}
+            data-effect="solid"
+            data-offset={
+              i === enabledPlugins.length - 1
+                ? "{'top': -33, 'right': 47}"
+                : "{'top': 4}"
+            }
             type="button"
-            className={pluginPanel?.name === plugin.name && styles.activePlugin}
+            className={
+              pluginPanel?.name === plugin.name ? styles.activePlugin : ''
+            }
             onClick={() => togglePluginPanel(plugin.name)}
           >
             {plugin.icon}

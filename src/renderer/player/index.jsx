@@ -87,6 +87,8 @@ export default function Player() {
 
     resizeCanvas();
 
+    document.getElementById('gameClient').focus();
+
     return () => {
       window.removeEventListener('resize', resizeCanvas);
     };
@@ -95,7 +97,13 @@ export default function Player() {
   return (
     <>
       <LoadingScreen progress={progress} />
-      <div className={styles.gameClient} id="gameClient" />
+      {/* TODO: find a better fix for this, this hack sucks.
+      the problem is: often, a button is focused by default
+      when launching the app, and it causes a tooltip to show.
+      focusing this div fixes it, but it's kind of a goofy workaround
+      and requires me to break a bunch of rules */}
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex, jsx-a11y/tabindex-no-positive */}
+      <div tabIndex="1" className={styles.gameClient} id="gameClient" />
     </>
   );
 }

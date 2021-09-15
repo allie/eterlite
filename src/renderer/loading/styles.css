@@ -25,7 +25,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 9999;
   transition: opacity 1s;
   background-image: url(assets/images/eterspire/loading_bg.png);
   background-size: cover;

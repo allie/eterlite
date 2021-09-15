@@ -159,3 +159,22 @@ button {
 *:focus {
   outline: none;
 }
+
+#root .__react_component_tooltip {
+  border-radius: 0;
+  border: 1px solid #000;
+  background-color: #fadfb6;
+  padding: 4px;
+  font-size: calc(12rem / 16);
+  color: black;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+#root .__react_component_tooltip.show {
+  opacity: 1;
+}
+
+#root .__react_component_tooltip::before,
+#root .__react_component_tooltip::after {
+  display: none;
+}
