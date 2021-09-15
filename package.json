@@ -31,7 +31,7 @@
     ]
   },
   "build": {
-    "productName": "eterlite",
+    "productName": "Eterlite",
     "appId": "com.github.allie.eterlite",
     "asar": true,
     "asarUnpack": "**\\*.{node,dll}",
