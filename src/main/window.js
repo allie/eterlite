@@ -85,8 +85,8 @@ const windowController = {
       .capturePage({
         x: 16,
         y: 65,
-        width: cw - 30 - (this.sidebarOpen ? SIDEBAR_WIDTH : 0),
-        height: ch - 78,
+        width: cw - 33 - (this.sidebarOpen ? SIDEBAR_WIDTH : 0),
+        height: ch - 81,
       })
       .then((image) => {
         return clipboard.writeImage(image);
