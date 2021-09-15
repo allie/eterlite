@@ -86,6 +86,11 @@ export default merge(baseConfig, {
           'sass-loader',
         ],
       },
+      {
+        test: /\.wav$|\.mp3$/,
+        exclude: /node_modules/,
+        loader: 'file-loader'
+      },
       // WOFF Font
       {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
