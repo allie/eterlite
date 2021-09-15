@@ -3,16 +3,16 @@ import React from 'react';
 import { usePlugins } from 'renderer/context/plugins';
 import { useTools } from 'renderer/context/tools';
 
-import homeIcon from 'assets/images/sword.png';
-import newsIcon from 'assets/images/news.png';
-import rulesIcon from 'assets/images/rules.png';
-import bugIcon from 'assets/images/bug.png';
-import feedbackIcon from 'assets/images/feedback.png';
-import wikiIcon from 'assets/images/wiki.png';
-import discordIcon from 'assets/images/discord.png';
-import twitterIcon from 'assets/images/twitter.png';
-import redditIcon from 'assets/images/reddit.png';
-import patreonIcon from 'assets/images/patreon.png';
+import homeIcon from 'assets/images/eterspire/sword.png';
+import newsIcon from 'assets/images/eterspire/news.png';
+import rulesIcon from 'assets/images/eterspire/rules.png';
+import bugIcon from 'assets/images/eterspire/bug.png';
+import feedbackIcon from 'assets/images/eterspire/feedback.png';
+import wikiIcon from 'assets/images/eterspire/wiki.png';
+import discordIcon from 'assets/images/eterspire/discord.png';
+import twitterIcon from 'assets/images/eterspire/twitter.png';
+import redditIcon from 'assets/images/eterspire/reddit.png';
+import patreonIcon from 'assets/images/eterspire/patreon.png';
 
 import styles from './styles.css';
 
