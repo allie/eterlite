@@ -151,3 +151,11 @@ button {
 * {
   box-sizing: border-box;
 }
+
+/* TODO: please fix this urgently, this is so horrible to do...
+   Tab navigation is broken anyway at the moment though, and often
+   a focus outline will get stuck on screen on load.
+*/
+*:focus {
+  outline: none;
+}
