@@ -6,6 +6,8 @@
 
 **Eterlite** is an unofficial Electron and React-based desktop client for the browser-based MMO [Eterspire](https://eterspire.com).
 
+<img src="https://i.imgur.com/eEGPgl1.png" />
+
 ## Features
 This client:
 * Allows you to play Eterspire outside your browser. No need to install Chrome just for Eterspire!
@@ -17,8 +19,6 @@ This client:
 * Has a thematic and fun UI :)
 
 \* *Coming soon!*
-
-<img src="https://i.imgur.com/eEGPgl1.png" />
 
 ## Installation
 First, you'll need to go the [GitHub releases](https://github.com/allie/eterlite/releases) and download the latest binary for your platform.
