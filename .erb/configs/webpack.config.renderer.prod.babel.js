@@ -50,8 +50,23 @@ export default merge(baseConfig, {
   module: {
     rules: [
       {
-        // CSS/SCSS
-        test: /\.s?css$/,
+        // CSS
+        test: /\.global\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // `./dist` can't be inerhited for publicPath for styles. Otherwise generated paths will be ./dist/dist
+              publicPath: './',
+            },
+          },
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+      {
+        // CSS modules
+        test: /^((?!\.global).)*\.css$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
