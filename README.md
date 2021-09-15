@@ -43,7 +43,3 @@ Additionally, the Eterlite logo, found in the `assets/` directory, is an adaptat
 All other assets in this repository, with exception to those borrowed from Eterspire under the `src/assets/images/eterspire/` directory, are also licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
 
 Thank you to Lartu and Tejo for creating such a lovely game and being so supportive of the development of this client! Please, go play their game!
-
-```
-
-```
