@@ -29,6 +29,9 @@ Eterlite for macOS is packaged as a disk image. Open `Eterlite.dmg`, then drag t
 ### Windows
 Eterlite for Windows is (for now) packaged as a portable executable, meaning you simply need to run `Eterlite.exe` to launch the client; no installation is required.
 
+### Linux
+Linux users will need to build Eterlite from the source. See the Development section below for more information on how to build it on your system.
+
 ## Usage
 The Eterlite interface has several components:
 * Above the game area is a toolbar.
