@@ -24,7 +24,7 @@ This client:
 First, you'll need to go the [GitHub releases](https://github.com/allie/eterlite/releases) and download the latest binary for your platform.
 
 ### macOS
-Eterlite for macOS is packaged as a disk image. Open `Eterlite.dmg`, then drag the `Eterlite.app` into your `Applications` folder and open it.
+Eterlite for macOS is packaged as a disk image. Open `Eterlite.dmg`, then drag the `Eterlite.app` into your `Applications` folder and open it. **Note: you may need to right-click on the application and choose "Open".** This is because the macOS version is not notarized, and launching the software this way allows you to run apps from unauthorized developers.
 
 ### Windows
 Eterlite for Windows is (for now) packaged as a portable executable, meaning you simply need to run `Eterlite.exe` to launch the client; no installation is required.
