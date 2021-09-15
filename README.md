@@ -1,5 +1,5 @@
 <p align="center">
-  <img align="center" alt="Eterlite logo" src="https://i.imgur.com/UCwCxzr.png" />
+  <img align="center" alt="Eterlite logo" src="https://i.imgur.com/UCwCxzr.png" width="256" height="256" />
 </p>
 
 # Eterlite
