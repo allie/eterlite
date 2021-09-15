@@ -68,10 +68,16 @@ const devMenuTemplate = {
 
 const menu = {
   init() {
-    const menus = [appMenuTemplate, editMenuTemplate, toolsMenuTemplate];
-    if (process.env.NODE_ENV !== 'production') {
-      menus.push(devMenuTemplate);
-    }
+    const menus = [
+      appMenuTemplate,
+      editMenuTemplate,
+      toolsMenuTemplate,
+      devMenuTemplate,
+    ];
+    // TODO: re-enable this code when a way to refresh the client is added
+    // if (process.env.NODE_ENV !== 'production') {
+    //   menus.push(devMenuTemplate);
+    // }
     Menu.setApplicationMenu(Menu.buildFromTemplate(menus));
   },
 };
