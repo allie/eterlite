@@ -35,7 +35,7 @@ export default function App() {
           <Layout />
         </ToolsProvider>
       </PluginsProvider>
-      <ReactTooltip delayShow={1000} />
+      <ReactTooltip delayShow={700} />
     </>
   );
 }
