@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import SettingsPlugin from 'renderer/plugins/settings';
 import HighscoresPlugin from 'renderer/plugins/highscores';
 
+// TODO: move canToggle and defaultEnabled to config
 const ALL_PLUGINS = [
   {
     module: SettingsPlugin,
@@ -29,7 +30,7 @@ export function PluginsProvider({ children }) {
     ...ALL_PLUGINS.reduce(
       (acc, plugin) => ({
         ...acc,
-        [plugin.module.name]: {
+        [plugin.module.config.name]: {
           module: plugin.module,
           enabled: plugin.defaultEnabled,
           canToggle: plugin.canToggle,
@@ -101,7 +102,10 @@ export function PluginsProvider({ children }) {
   );
 
   const pluginPanel = React.useMemo(
-    () => enabledPlugins.find((plugin) => plugin.name === currentPluginPanel),
+    () =>
+      enabledPlugins.find(
+        (plugin) => plugin.config.name === currentPluginPanel
+      ),
     [currentPluginPanel, enabledPlugins]
   );
 
