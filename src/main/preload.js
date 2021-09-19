@@ -1,30 +1,48 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electron', {
-  ipcRenderer: {
-    toggleSidebar(show) {
-      ipcRenderer.send('sidebar', show);
+  toggleSidebar(show) {
+    ipcRenderer.send('sidebar', show);
+  },
+  toggleFullscreen(fullscreen) {
+    ipcRenderer.send('fullscreen', fullscreen);
+  },
+  takeScreenshot() {
+    ipcRenderer.send('screenshot');
+  },
+  openExternalLink(url) {
+    ipcRenderer.send('open-external-link', url);
+  },
+  firstRenderFinished() {
+    ipcRenderer.send('first-render');
+  },
+  syncSettings() {
+    ipcRenderer.send('sync-settings');
+  },
+  on(channel, func) {
+    ipcRenderer.on(channel, (event, ...args) => func(...args));
+  },
+  once(channel, func) {
+    ipcRenderer.once(channel, (event, ...args) => func(...args));
+  },
+  log: {
+    error(module, ...args) {
+      ipcRenderer.send('log', ['error', module, ...args]);
     },
-    toggleFullscreen(fullscreen) {
-      ipcRenderer.send('fullscreen', fullscreen);
+    warn(module, ...args) {
+      ipcRenderer.send('log', ['warn', module, ...args]);
     },
-    takeScreenshot() {
-      ipcRenderer.send('screenshot');
+    info(module, ...args) {
+      ipcRenderer.send('log', ['info', module, ...args]);
     },
-    openExternalLink(url) {
-      ipcRenderer.send('open-external-link', url);
+    verbose(module, ...args) {
+      ipcRenderer.send('log', ['verbose', module, ...args]);
     },
-    firstRenderFinished() {
-      ipcRenderer.send('first-render');
+    debug(module, ...args) {
+      ipcRenderer.send('log', ['debug', module, ...args]);
     },
-    syncSettings() {
-      ipcRenderer.send('sync-settings');
-    },
-    on(channel, func) {
-      ipcRenderer.on(channel, (event, ...args) => func(...args));
-    },
-    once(channel, func) {
-      ipcRenderer.once(channel, (event, ...args) => func(...args));
+    silly(module, ...args) {
+      ipcRenderer.send('log', ['silly', module, ...args]);
     },
   },
 });

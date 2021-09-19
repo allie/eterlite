@@ -1,5 +1,5 @@
 {
-  "name": "Eterlite",
+  "name": "eterlite",
   "productName": "Eterlite",
   "description": "An electron wrapper for the browser-based MMO Eterspire",
   "scripts": {

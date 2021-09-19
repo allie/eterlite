@@ -30,9 +30,7 @@ export default function Toolbar() {
           data-offset="{'top': -33, 'left': 47}"
           type="button"
           onClick={() =>
-            window.electron.ipcRenderer.openExternalLink(
-              'https://eterspire.com/index.php'
-            )
+            electron.openExternalLink('https://eterspire.com/index.php')
           }
         >
           <img src={homeIcon} alt="Eterspire Website" />
@@ -44,9 +42,7 @@ export default function Toolbar() {
           data-offset="{'top': 4}"
           type="button"
           onClick={() =>
-            window.electron.ipcRenderer.openExternalLink(
-              'https://eterspire.com/index.php'
-            )
+            electron.openExternalLink('https://eterspire.com/index.php')
           }
         >
           <img src={newsIcon} alt="News and Updates" />
@@ -58,9 +54,7 @@ export default function Toolbar() {
           data-offset="{'top': 4}"
           type="button"
           onClick={() =>
-            window.electron.ipcRenderer.openExternalLink(
-              'https://eterspire.com/rules.php'
-            )
+            electron.openExternalLink('https://eterspire.com/rules.php')
           }
         >
           <img src={rulesIcon} alt="Rules" />
@@ -72,9 +66,7 @@ export default function Toolbar() {
           data-offset="{'top': 4}"
           type="button"
           onClick={() =>
-            window.electron.ipcRenderer.openExternalLink(
-              'https://forms.gle/wtd1jbup18qxLamP9'
-            )
+            electron.openExternalLink('https://forms.gle/wtd1jbup18qxLamP9')
           }
         >
           <img src={bugIcon} alt="Report a Bug" />
@@ -86,9 +78,7 @@ export default function Toolbar() {
           data-offset="{'top': 4}"
           type="button"
           onClick={() =>
-            window.electron.ipcRenderer.openExternalLink(
-              'https://forms.gle/wtd1jbup18qxLamP9'
-            )
+            electron.openExternalLink('https://forms.gle/wtd1jbup18qxLamP9')
           }
         >
           <img src={feedbackIcon} alt="Submit Feedback" />
@@ -100,7 +90,7 @@ export default function Toolbar() {
           data-offset="{'top': 4}"
           type="button"
           onClick={() =>
-            window.electron.ipcRenderer.openExternalLink(
+            electron.openExternalLink(
               'https://eterspire.fandom.com/wiki/Eterspire_Wiki'
             )
           }
@@ -114,9 +104,7 @@ export default function Toolbar() {
           data-offset="{'top': 4}"
           type="button"
           onClick={() =>
-            window.electron.ipcRenderer.openExternalLink(
-              'https://discord.gg/6zVfuAYctU'
-            )
+            electron.openExternalLink('https://discord.gg/6zVfuAYctU')
           }
         >
           <img src={discordIcon} alt="Discord" />
@@ -128,9 +116,7 @@ export default function Toolbar() {
           data-offset="{'top': 4}"
           type="button"
           onClick={() =>
-            window.electron.ipcRenderer.openExternalLink(
-              'https://twitter.com/martulartu'
-            )
+            electron.openExternalLink('https://twitter.com/martulartu')
           }
         >
           <img src={twitterIcon} alt="Twitter" />
@@ -142,9 +128,7 @@ export default function Toolbar() {
           data-offset="{'top': 4}"
           type="button"
           onClick={() =>
-            window.electron.ipcRenderer.openExternalLink(
-              'https://reddit.com/r/eterspire'
-            )
+            electron.openExternalLink('https://reddit.com/r/eterspire')
           }
         >
           <img src={redditIcon} alt="Reddit" />
@@ -156,7 +140,7 @@ export default function Toolbar() {
           data-offset="{'top': 4}"
           type="button"
           onClick={() =>
-            window.electron.ipcRenderer.openExternalLink(
+            electron.openExternalLink(
               'https://www.patreon.com/bePatron?u=61266449'
             )
           }

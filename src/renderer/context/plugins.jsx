@@ -84,13 +84,13 @@ export function PluginsProvider({ children }) {
       setCurrentPluginPanel((oldCurrentPluginPanel) => {
         if (!oldCurrentPluginPanel) {
           window.sidebarWasToggled = true;
-          window.electron.ipcRenderer.toggleSidebar(true);
+          electron.toggleSidebar(true);
           return name;
         }
 
         if (oldCurrentPluginPanel === name) {
           window.sidebarWasToggled = true;
-          window.electron.ipcRenderer.toggleSidebar(false);
+          electron.toggleSidebar(false);
           return null;
         }
 

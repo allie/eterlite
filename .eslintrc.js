@@ -24,4 +24,8 @@ module.exports = {
       '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
   },
+  globals: {
+    electron: 'readonly',
+    UnityLoader: 'readonly',
+  },
 };

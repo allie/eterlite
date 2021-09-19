@@ -13,16 +13,16 @@ export function GlobalSettingsProvider({ children }) {
       setSettings(newSettings);
     }
 
-    window.electron.ipcRenderer.on('sync-settings', onSyncSettings);
+    electron.on('sync-settings', onSyncSettings);
 
     return () => {
-      window.electron?.ipcRenderer?.off('sync-settings', onSyncSettings);
+      electron?.off('sync-settings', onSyncSettings);
     };
   }, [setSettings]);
 
   // Sync local settings with the main thread
   const syncSettings = React.useCallback(() => {
-    window.electron.ipcRenderer.syncSettings();
+    electron.syncSettings();
   }, []);
 
   // Sync settings on first load
@@ -60,7 +60,7 @@ export function GlobalSettingsProvider({ children }) {
         return currentSettings;
       });
 
-      window.electron.ipcRenderer.setSetting();
+      electron.setSetting();
     },
     [setSettings, settings]
   );

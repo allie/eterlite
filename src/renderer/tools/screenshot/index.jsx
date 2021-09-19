@@ -9,7 +9,7 @@ const ScreenshotTool = {
   author: 'allie',
   icon: <img src={icon} alt="Screenshot" />,
   onClick() {
-    window.electron.ipcRenderer.takeScreenshot();
+    electron.takeScreenshot();
   },
 };
 

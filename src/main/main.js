@@ -3,7 +3,7 @@ import { app, ipcMain, shell, session } from 'electron';
 import windowController from './window';
 import menu from './menu';
 import settingsController from './settings';
-import log from './log';
+import log, { renderThreadLog } from './log';
 
 // Intercept requests and fix the headers so we don't get
 // CORS errors when in development. Not necessary in prod.
@@ -45,6 +45,18 @@ function initIpcEvents() {
   ipcMain.on('open-external-link', (e, href) => {
     log.debug('main', 'Received ipc message "open-external-link"', href);
     shell.openExternal(href);
+  });
+
+  ipcMain.on('log', (event, [level, module, ...args]) => {
+    if (renderThreadLog[level]) {
+      renderThreadLog[level](module, ...args);
+    } else {
+      renderThreadLog.warn(
+        module,
+        `Logged from render thread with invalid level "${level}":`,
+        ...args
+      );
+    }
   });
 }
 

@@ -40,13 +40,11 @@ export default function Player() {
 
     // Toggle between fullscreen and windowed
     window.resizeScreen = (fullscreen) => {
-      window.electron.ipcRenderer.toggleFullscreen(fullscreen);
+      electron.toggleFullscreen(fullscreen);
     };
 
     window.OpenFeedbackForm = () => {
-      window.electron.ipcRenderer.openExternalLink(
-        'https://forms.gle/wtd1jbup18qxLamP9'
-      );
+      electron.openExternalLink('https://forms.gle/wtd1jbup18qxLamP9');
     };
 
     function resizeCanvas() {
@@ -66,7 +64,7 @@ export default function Player() {
         );
     }
 
-    gameInstanceRef.current = window.UnityLoader.instantiate(
+    gameInstanceRef.current = UnityLoader.instantiate(
       'gameClient',
       'http://play.eterspire.com/Build/Eterspire.json',
       {
