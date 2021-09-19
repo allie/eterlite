@@ -3,10 +3,13 @@ import { app, ipcMain, shell, session } from 'electron';
 import windowController from './window';
 import menu from './menu';
 import settingsController from './settings';
+import log from './log';
 
 // Intercept requests and fix the headers so we don't get
 // CORS errors when in development. Not necessary in prod.
 function fixCors() {
+  log.debug('main', 'Fixing CORS...');
+
   const filter = {
     urls: ['*://*.eterspire.com/*'],
   };
@@ -15,6 +18,7 @@ function fixCors() {
     filter,
     (details, callback) => {
       details.requestHeaders.Origin = 'http://play.eterspire.com';
+      log.silly('main', 'Replacing Origin header before send...', details.url);
       callback({ requestHeaders: details.requestHeaders });
     }
   );
@@ -27,6 +31,11 @@ function fixCors() {
           'http://localhost:1212',
         ];
       }
+      log.silly(
+        'main',
+        'Injecting Access-Control-Allow-Origin header...',
+        details.url
+      );
       callback({ responseHeaders: details.responseHeaders });
     }
   );
@@ -34,6 +43,7 @@ function fixCors() {
 
 function initIpcEvents() {
   ipcMain.on('open-external-link', (e, href) => {
+    log.debug('main', 'Received ipc message "open-external-link"', href);
     shell.openExternal(href);
   });
 }
@@ -49,5 +59,6 @@ app.on('ready', () => {
 });
 
 app.on('window-all-closed', () => {
+  log.debug('main', 'All windows closed, quitting...');
   app.quit();
 });

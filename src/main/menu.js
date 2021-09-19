@@ -1,5 +1,6 @@
 import { app, BrowserWindow, Menu } from 'electron';
 import windowController from './window';
+import log from './log';
 
 const appMenuTemplate = {
   label: 'Eterlite',
@@ -68,17 +69,20 @@ const devMenuTemplate = {
 
 const menu = {
   init() {
+    log.debug('menu', 'Initializing menu...');
     const menus = [
       appMenuTemplate,
       editMenuTemplate,
       toolsMenuTemplate,
       devMenuTemplate,
     ];
+    log.silly('menu', 'Menu templates:', menus);
     // TODO: re-enable this code when a way to refresh the client is added
     // if (process.env.NODE_ENV !== 'production') {
     //   menus.push(devMenuTemplate);
     // }
     Menu.setApplicationMenu(Menu.buildFromTemplate(menus));
+    log.debug('menu', 'Built menu and set it as application menu');
   },
 };
 

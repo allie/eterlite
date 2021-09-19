@@ -134,8 +134,8 @@ const settingsController = {
     log.silly('settings', 'Initialized store:', this.store.store);
 
     ipcMain.on('sync-settings', (event) => {
-      log.debug('settings', 'Received sync-settings');
-      log.silly('settings', 'sync-settings response:', this.store.store);
+      log.debug('settings', 'Received ipc message "sync-settings"');
+      log.silly('settings', 'Replying to "sync-settings"...', this.store.store);
       event.reply('sync-settings', this.store.store);
     });
   },
