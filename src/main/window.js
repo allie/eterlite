@@ -1,5 +1,7 @@
 import { BrowserWindow, clipboard, ipcMain } from 'electron';
+import isDev from 'electron-is-dev';
 import path from 'path';
+import log from './log';
 
 const SIDEBAR_WIDTH = 320;
 
@@ -27,25 +29,34 @@ const windowController = {
         contextIsolation: true,
       },
     });
-    this.window.webContents.openDevTools();
+
+    log.debug('window', 'Created main window');
+
+    if (isDev) {
+      this.window.webContents.openDevTools();
+    }
 
     const [width, height] = this.window.getSize();
     this.minWidth = width;
     this.minHeight = height;
 
     ipcMain.on('sidebar', (event, isOpen) => {
+      log.debug('window', 'Received ipc message "sidebar"', isOpen);
       this.toggleSidebar(isOpen);
     });
 
     ipcMain.on('fullscreen', (event, fullscreen) => {
+      log.debug('window', 'Received ipc message "fullscreen"', fullscreen);
       this.window.setFullScreen(fullscreen);
     });
 
     ipcMain.on('screenshot', () => {
+      log.debug('window', 'Received ipc message "screenshot"');
       this.captureScreenshot();
     });
 
     ipcMain.on('first-render', () => {
+      log.debug('window', 'Received ipc message "first-render"');
       this.ready = true;
       this.window.show();
     });
@@ -53,9 +64,11 @@ const windowController = {
     // Close the sidebar on reload
     // TODO: Remove this and load sidebar state from config file instead
     this.window.webContents.on('did-start-loading', () => {
+      log.debug('window', 'webContents event "did-start-loading"');
       this.toggleSidebar(false);
     });
 
+    log.debug('window', 'Loading React app...');
     if (process.env.NODE_ENV === 'development') {
       const port = process.env.PORT || 1212;
       const url = new URL(`http://localhost:${port}`);
@@ -71,30 +84,72 @@ const windowController = {
   toggleSidebar(isOpen) {
     const [cw, ch] = this.window.getContentSize();
     if (isOpen && !this.sidebarOpen) {
-      this.window.setContentSize(cw + SIDEBAR_WIDTH, ch);
-      this.window.setMinimumSize(this.minWidth + SIDEBAR_WIDTH, this.minHeight);
+      const contentWidth = cw + SIDEBAR_WIDTH;
+      const minWidth = this.minWidth + SIDEBAR_WIDTH;
+
+      this.window.setContentSize(contentWidth, ch);
+      this.window.setMinimumSize(minWidth, this.minHeight);
+
+      const [ww, wh] = this.window.getSize();
+
+      log.debug('window', 'Opened sidebar');
+      log.silly('window', 'New window size:', `${ww}, ${wh}`);
+      log.silly('window', 'New content size:', `${contentWidth}, ${ch}`);
+      log.silly(
+        'window',
+        'New minimum size:',
+        `${minWidth}, ${this.minHeight}`
+      );
     } else if (!isOpen && this.sidebarOpen) {
       const [w, h] = this.window.getSize();
+
       this.window.setMinimumSize(this.minWidth, this.minHeight);
       this.window.setSize(w - SIDEBAR_WIDTH, h);
+
+      const [contentWidth] = this.window.getContentSize();
+      const [ww, wh] = this.window.getSize();
+
+      log.debug('window', 'Closed sidebar');
+      log.silly('window', 'New window size:', `${ww}, ${wh}`);
+      log.silly('window', 'New content size:', `${contentWidth}, ${ch}`);
+      log.silly(
+        'window',
+        'New minimum size:',
+        `${this.minWidth}, ${this.minHeight}`
+      );
     }
     this.sidebarOpen = isOpen;
   },
 
   captureScreenshot() {
     const [cw, ch] = this.window.getContentSize();
+    const x = 16;
+    const y = 65;
+    const width = cw - 33 - (this.sidebarOpen ? SIDEBAR_WIDTH : 0);
+    const height = ch - 81;
+
+    log.debug('window', 'Taking screenshot...');
+    log.silly(
+      'window',
+      'Bounds:',
+      `x=${x}, y=${y}, width=${width}, height=${height}`
+    );
+
     this.window.webContents
       .capturePage({
-        x: 16,
-        y: 65,
-        width: cw - 33 - (this.sidebarOpen ? SIDEBAR_WIDTH : 0),
-        height: ch - 81,
+        x,
+        y,
+        width,
+        height,
       })
       .then((image) => {
+        log.debug('window', 'Captured screenshot to image');
+        log.debug('window', 'Writing screenshot to clipboard...');
+        // TODO: log the clipboard success state
         return clipboard.writeImage(image);
       })
       .catch((err) => {
-        // TODO: handle this
+        log.error('window', err.message);
       });
   },
 };

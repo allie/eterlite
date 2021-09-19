@@ -1,9 +1,14 @@
 import log from 'electron-log';
 import chalk from 'chalk';
 
+const moduleColours = {
+  settings: chalk.bgMagenta,
+  window: chalk.bgCyan,
+};
+
 const formatLog = (level, module, ...args) => [
   level,
-  chalk.bgMagenta.black(`[${module}]`),
+  (moduleColours[module] || chalk.bgWhite).black(`[${module}]`),
   ...args,
 ];
 
