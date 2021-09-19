@@ -6,7 +6,7 @@ import log from './log';
 // TODO: load these differently... don't want to have to hardcode them honestly
 /* eslint-disable global-require */
 const plugins = {
-  settings: require('../renderer/plugins/settings/config.json'),
+  eterlite: require('../renderer/plugins/settings/config.json'),
   highscores: require('../renderer/plugins/highscores/config.json'),
 };
 /* eslint-enable global-require */
@@ -154,6 +154,11 @@ const settingsController = {
   getAll() {
     log.debug('settings', 'Got whole store:', this.store.store);
     return this.store.store;
+  },
+
+  clear() {
+    this.store.clear();
+    log.debug('settings', 'Cleared store');
   },
 };
 

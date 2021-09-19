@@ -1,6 +1,7 @@
 import { app, BrowserWindow, Menu } from 'electron';
 import windowController from './window';
 import log from './log';
+import settingsController from './settings';
 
 const appMenuTemplate = {
   label: 'Eterlite',
@@ -54,6 +55,7 @@ const devMenuTemplate = {
       label: 'Reload',
       accelerator: 'CmdOrCtrl+R',
       click() {
+        log.debug('menu', '"Reload" menu item clicked');
         BrowserWindow.getFocusedWindow().webContents.reloadIgnoringCache();
       },
     },
@@ -61,7 +63,19 @@ const devMenuTemplate = {
       label: 'Toggle DevTools',
       accelerator: 'Alt+CmdOrCtrl+I',
       click() {
+        log.debug('menu', '"Toggle DevTools" menu item clicked');
         BrowserWindow.getFocusedWindow().toggleDevTools();
+      },
+    },
+    {
+      label: 'Clear Settings',
+      click() {
+        log.debug('menu', '"Clear Settings" menu item clicked');
+        settingsController.clear();
+        log.debug('menu', 'Relaunching eterlite...');
+        // TODO: fix relaunching...
+        app.relaunch();
+        app.quit();
       },
     },
   ],

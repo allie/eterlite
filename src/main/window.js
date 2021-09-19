@@ -1,7 +1,9 @@
 import { BrowserWindow, clipboard, ipcMain } from 'electron';
+import debounce from 'debounce';
 import isDev from 'electron-is-dev';
 import path from 'path';
 import log from './log';
+import settingsController from './settings';
 
 const SIDEBAR_WIDTH = 320;
 
@@ -13,12 +15,31 @@ const windowController = {
   ready: false,
 
   init() {
+    // Restore window bounds from settings if remembering is enabled
+    const rememberWindow = settingsController.getSetting(
+      'eterlite',
+      'rememberWindow'
+    );
+    const bounds = rememberWindow
+      ? settingsController.getSetting('eterlite', 'windowBounds')
+      : {
+          width: 933,
+          height: 681,
+        };
+
+    if (rememberWindow) {
+      log.debug(
+        'window',
+        'Loaded saved window bounds:',
+        `x=${bounds.x}, y=${bounds.y}, width=${bounds.width}, height=${bounds.height}`
+      );
+    }
+
     this.window = new BrowserWindow({
       autoHideMenuBar: true,
       show: false,
       useContentSize: true,
-      width: 933,
-      height: 681,
+      ...bounds,
       minWidth: 933,
       minHeight: 681,
       backgroundColor: '#000000',
@@ -60,6 +81,25 @@ const windowController = {
       this.ready = true;
       this.window.show();
     });
+
+    // Save window bounds to settings, debounced
+    // TODO: ipc message listener to toggle this callback
+    if (rememberWindow) {
+      log.debug('window', 'Setting up "resize" event listener...');
+      this.window.on(
+        'resize',
+        debounce(() => {
+          const [newWidth, newHeight] = this.window.getContentSize();
+          const [newX, newY] = this.window.getPosition();
+          settingsController.writeSetting('eterlite', 'windowBounds', {
+            x: newX,
+            y: newY,
+            width: this.sidebarOpen ? newWidth - SIDEBAR_WIDTH : newWidth,
+            height: newHeight,
+          });
+        }, 500)
+      );
+    }
 
     // Close the sidebar on reload
     // TODO: Remove this and load sidebar state from config file instead

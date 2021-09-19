@@ -25,9 +25,19 @@
       "type": "toggle",
       "default": true
     },
-    "windowPosition": {
-      "x": {},
-      "y": {}
+    "windowBounds": {
+      "x": {
+        "default": 0
+      },
+      "y": {
+        "default": 0
+      },
+      "width": {
+        "default": 933
+      },
+      "height": {
+        "default": 681
+      }
     }
   }
 }
