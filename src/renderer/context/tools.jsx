@@ -37,7 +37,7 @@ export function ToolsProvider({ children }) {
   const enabledTools = React.useMemo(
     () =>
       Object.entries(tools).reduce(
-        (acc, [name, tool]) => [...acc, ...(tool.enabled ? [tool.module] : [])],
+        (acc, [, tool]) => [...acc, ...(tool.enabled ? [tool.module] : [])],
         []
       ),
     [tools]

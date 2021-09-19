@@ -8,6 +8,7 @@ import Player from './player';
 import styles from './styles.css';
 import { PluginsProvider, usePlugins } from './context/plugins';
 import { ToolsProvider } from './context/tools';
+import { GlobalSettingsProvider } from './context/settings';
 
 function Layout() {
   const { pluginPanel } = usePlugins();
@@ -30,12 +31,14 @@ export default function App() {
 
   return (
     <>
-      <PluginsProvider>
-        <ToolsProvider>
-          <Layout />
-        </ToolsProvider>
-      </PluginsProvider>
-      <ReactTooltip delayShow={700} />
+      <GlobalSettingsProvider>
+        <PluginsProvider>
+          <ToolsProvider>
+            <Layout />
+          </ToolsProvider>
+        </PluginsProvider>
+        <ReactTooltip delayShow={700} />
+      </GlobalSettingsProvider>
     </>
   );
 }

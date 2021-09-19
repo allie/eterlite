@@ -1,0 +1,33 @@
+{
+  "name": "Eterlite",
+  "author": "allie",
+  "version": "0.1.0",
+  "description": "Core settings for Eterlite.",
+  "scope": "eterlite",
+  "settings": {
+    "clientSize": {
+      "label": "Client bounds",
+      "type": "multiInput",
+      "inputs": {
+        "width": {
+          "label": "Width",
+          "default": 900
+        },
+        "height": {
+          "label": "Height",
+          "default": 600
+        }
+      }
+    },
+    "rememberWindow": {
+      "label": "Remember window size and position",
+      "description": "If enabled, the window will restore its previous size and position when launching.",
+      "type": "toggle",
+      "default": true
+    },
+    "windowPosition": {
+      "x": {},
+      "y": {}
+    }
+  }
+}

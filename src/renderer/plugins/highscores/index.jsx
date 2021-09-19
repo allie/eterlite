@@ -1,18 +1,19 @@
 import React from 'react';
+// import { useSettings } from 'renderer/context/settings';
 import styles from './styles.css';
 
 import icon from './icon.png';
+import config from './config.json';
 
 const placeStyles = [styles.first, styles.second, styles.third];
 
 const HighscoresPlugin = {
-  name: 'Highscores',
-  version: '0.1.0',
-  author: 'allie',
+  config,
   icon: <img src={icon} alt="Highscores" />,
   Component() {
     const [data, setData] = React.useState([]);
     const [hasError, setHasError] = React.useState(false);
+    // const { settings } = useSettings();
 
     // Fetch highscores data from the API
     const fetchData = React.useCallback(() => {

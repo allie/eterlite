@@ -17,19 +17,14 @@ contextBridge.exposeInMainWorld('electron', {
     firstRenderFinished() {
       ipcRenderer.send('first-render');
     },
+    syncSettings() {
+      ipcRenderer.send('sync-settings');
+    },
     on(channel, func) {
-      const validChannels = ['ipc-example'];
-      if (validChannels.includes(channel)) {
-        // Deliberately strip event as it includes `sender`
-        ipcRenderer.on(channel, (event, ...args) => func(...args));
-      }
+      ipcRenderer.on(channel, (event, ...args) => func(...args));
     },
     once(channel, func) {
-      const validChannels = ['ipc-example'];
-      if (validChannels.includes(channel)) {
-        // Deliberately strip event as it includes `sender`
-        ipcRenderer.once(channel, (event, ...args) => func(...args));
-      }
+      ipcRenderer.once(channel, (event, ...args) => func(...args));
     },
   },
 });

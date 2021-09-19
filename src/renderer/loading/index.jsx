@@ -5,7 +5,7 @@ import styles from './styles.css';
 
 const delays = Array(12)
   .fill(true)
-  .map((item) => Math.floor(Math.random() * 1000));
+  .map(() => Math.floor(Math.random() * 1000));
 
 export default function LoadingScreen({ loading, progress }) {
   const [show, setShow] = React.useState(true);

@@ -43,7 +43,7 @@ export function PluginsProvider({ children }) {
   const enabledPlugins = React.useMemo(
     () =>
       Object.entries(plugins).reduce(
-        (acc, [name, plugin]) => [
+        (acc, [, plugin]) => [
           ...acc,
           ...(plugin.enabled ? [plugin.module] : []),
         ],

@@ -2,6 +2,7 @@ import { app, ipcMain, shell, session } from 'electron';
 
 import windowController from './window';
 import menu from './menu';
+import settingsController from './settings';
 
 // Intercept requests and fix the headers so we don't get
 // CORS errors when in development. Not necessary in prod.
@@ -42,6 +43,7 @@ app.on('ready', () => {
     fixCors();
   }
   initIpcEvents();
+  settingsController.init();
   windowController.init();
   menu.init();
 });

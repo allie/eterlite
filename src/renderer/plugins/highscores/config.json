@@ -1,0 +1,15 @@
+{
+  "name": "Highscores",
+  "author": "allie",
+  "version": "0.1.1",
+  "description": "Official Eterlite highscores table.",
+  "scope": "highscores",
+  "settings": {
+    "autoRefresh": {
+      "label": "Auto-refresh",
+      "description": "Automatically refreshes the highscores on an interval.",
+      "type": "toggle",
+      "default": true
+    }
+  }
+}

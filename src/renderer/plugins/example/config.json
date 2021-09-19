@@ -1,0 +1,44 @@
+{
+  "name": "Example",
+  "author": "allie",
+  "version": "0.1.0",
+  "description": "An example plugin.",
+  "scope": "example",
+  "tooltip": "Example",
+  "settings": {
+    "thingIsEnabled": {
+      "type": "toggle",
+      "default": true
+    },
+    "selectedThing": {
+      "type": "select",
+      "options": [
+        "Value 1",
+        "Value 2",
+        "Value 3"
+      ],
+      "default": "Value 1"
+    },
+    "thingBounds": {
+      "type": "multiInput",
+      "inputs": {
+        "x": {
+          "label": "Position X",
+          "default": 0
+        },
+        "y": {
+          "label": "Position Y",
+          "default": 0
+        },
+        "width": {
+          "label": "Width",
+          "default": 100
+        },
+        "height": {
+          "label": "Height",
+          "default": 100
+        }
+      }
+    }
+  }
+}

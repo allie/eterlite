@@ -24,8 +24,10 @@ const windowController = {
       webPreferences: {
         preload: path.join(__dirname, 'preload.js'),
         backgroundThrottling: false,
+        contextIsolation: true,
       },
     });
+    this.window.webContents.openDevTools();
 
     const [width, height] = this.window.getSize();
     this.minWidth = width;
@@ -39,11 +41,11 @@ const windowController = {
       this.window.setFullScreen(fullscreen);
     });
 
-    ipcMain.on('screenshot', (event) => {
+    ipcMain.on('screenshot', () => {
       this.captureScreenshot();
     });
 
-    ipcMain.on('first-render', (event) => {
+    ipcMain.on('first-render', () => {
       this.ready = true;
       this.window.show();
     });
