@@ -1,15 +1,25 @@
 import log from 'electron-log';
 import chalk from 'chalk';
+import { inspect } from 'util';
 
 const moduleColours = {
-  settings: chalk.bgMagenta,
-  window: chalk.bgCyan,
+  main: chalk.bgWhite,
+  settings: chalk.bgCyan,
+  window: chalk.bgYellow,
+  menu: chalk.bgMagenta,
 };
 
-const formatLog = (level, module, ...args) => [
+const inspectArgs = (...args) =>
+  args.map((arg) =>
+    typeof arg === 'object' || Array.isArray(arg)
+      ? inspect(arg, { depth: Infinity })
+      : arg
+  );
+
+const formatLog = (level, module, ...rest) => [
   level,
   (moduleColours[module] || chalk.bgWhite).black(`[${module}]`),
-  ...args,
+  ...inspectArgs(...rest),
 ];
 
 const moduleLog = {
