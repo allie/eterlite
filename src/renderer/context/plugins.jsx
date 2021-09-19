@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import SettingsPlugin from 'renderer/plugins/settings';
 import HighscoresPlugin from 'renderer/plugins/highscores';
+import NotesPlugin from 'renderer/plugins/notes';
 
 // TODO: move canToggle and defaultEnabled to config
 const ALL_PLUGINS = [
@@ -10,6 +11,11 @@ const ALL_PLUGINS = [
     module: SettingsPlugin,
     defaultEnabled: true,
     canToggle: false,
+  },
+  {
+    module: NotesPlugin,
+    defaultEnabled: true,
+    canToggle: true,
   },
   {
     module: HighscoresPlugin,

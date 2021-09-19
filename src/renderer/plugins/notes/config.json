@@ -1,0 +1,12 @@
+{
+  "name": "Notes",
+  "author": "allie",
+  "version": "0.1.0",
+  "description": "A notepad, so you don't forget things.",
+  "scope": "notes",
+  "settings": {
+    "savedNotes": {
+      "default": ""
+    }
+  }
+}

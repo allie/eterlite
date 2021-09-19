@@ -8,6 +8,7 @@ import log from './log';
 const plugins = {
   eterlite: require('../renderer/plugins/settings/config.json'),
   highscores: require('../renderer/plugins/highscores/config.json'),
+  notes: require('../renderer/plugins/notes/config.json'),
 };
 /* eslint-enable global-require */
 log.debug('settings', 'Loaded plugin config files...');
