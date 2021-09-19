@@ -27,7 +27,6 @@ function Layout() {
 export default function App() {
   React.useEffect(() => {
     electron.firstRenderFinished();
-    electron.log.debug('App', 'hello from renderer!');
   }, []);
 
   return (
