@@ -33,6 +33,13 @@ const toolsMenuTemplate = {
   label: 'Tools',
   submenu: [
     {
+      label: 'Create Alt Window',
+      accelerator: 'CmdOrCtrl+N',
+      click() {
+        windowController.createExtraWindow();
+      },
+    },
+    {
       label: 'Take Screenshot',
       accelerator: 'CmdOrCtrl+S',
       click() {

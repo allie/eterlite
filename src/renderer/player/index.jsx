@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import LoadingScreen from '../loading';
 
 import styles from './styles.css';
 
-export default function Player() {
+export default function Player({ minimal }) {
   const gameInstanceRef = React.useRef();
   const [progress, setProgress] = React.useState(0);
 
@@ -56,12 +57,24 @@ export default function Player() {
 
       const height = window.innerHeight < 600 ? 600 : window.innerHeight;
       const width = document.getElementById('gameClient').clientWidth;
-      document
-        .querySelector('canvas')
-        ?.setAttribute(
-          'style',
-          `width: ${width - 1}px; height: ${height - 81}px;`
-        );
+
+      // TODO: this is a pretty lame solution, let's come up with something better
+      // when we make alt windows use the toolbar and sidebar
+      if (minimal) {
+        document
+          .querySelector('canvas')
+          ?.setAttribute(
+            'style',
+            `width: ${width - 1}px; height: ${height - 31}px;`
+          );
+      } else {
+        document
+          .querySelector('canvas')
+          ?.setAttribute(
+            'style',
+            `width: ${width - 1}px; height: ${height - 81}px;`
+          );
+      }
     }
 
     gameInstanceRef.current = UnityLoader.instantiate(
@@ -90,7 +103,7 @@ export default function Player() {
     return () => {
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, [setProgress]);
+  }, [setProgress, minimal]);
 
   return (
     <>
@@ -105,3 +118,11 @@ export default function Player() {
     </>
   );
 }
+
+Player.propTypes = {
+  minimal: PropTypes.bool,
+};
+
+Player.defaultProps = {
+  minimal: false,
+};

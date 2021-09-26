@@ -10,6 +10,9 @@ contextBridge.exposeInMainWorld('electron', {
   takeScreenshot() {
     ipcRenderer.send('screenshot');
   },
+  createExtraWindow() {
+    ipcRenderer.send('extra-window');
+  },
   openExternalLink(url) {
     ipcRenderer.send('open-external-link', url);
   },

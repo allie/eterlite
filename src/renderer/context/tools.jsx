@@ -2,10 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ScreenshotTool from 'renderer/tools/screenshot';
+import ExtraWindowTool from 'renderer/tools/extraWindow';
 
 const ALL_TOOLS = [
   {
     module: ScreenshotTool,
+    defaultEnabled: true,
+    canToggle: true,
+  },
+  {
+    module: ExtraWindowTool,
     defaultEnabled: true,
     canToggle: true,
   },

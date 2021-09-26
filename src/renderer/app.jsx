@@ -1,4 +1,5 @@
 import React from 'react';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 
 import Toolbar from './toolbar';
@@ -10,7 +11,7 @@ import { PluginsProvider, usePlugins } from './context/plugins';
 import { ToolsProvider } from './context/tools';
 import { GlobalSettingsProvider } from './context/settings';
 
-function Layout() {
+function MainWindow() {
   const { pluginPanel } = usePlugins();
 
   return (
@@ -24,6 +25,29 @@ function Layout() {
   );
 }
 
+function AltWindow() {
+  return (
+    <div className={styles.appContainer}>
+      <Player minimal />
+    </div>
+  );
+}
+
+function AppRouter() {
+  return (
+    <HashRouter>
+      <Switch>
+        <Route path="/alt">
+          <AltWindow />
+        </Route>
+        <Route path="/" exact>
+          <MainWindow />
+        </Route>
+      </Switch>
+    </HashRouter>
+  );
+}
+
 export default function App() {
   React.useEffect(() => {
     electron.firstRenderFinished();
@@ -34,7 +58,7 @@ export default function App() {
       <GlobalSettingsProvider>
         <PluginsProvider>
           <ToolsProvider>
-            <Layout />
+            <AppRouter />
           </ToolsProvider>
         </PluginsProvider>
         <ReactTooltip delayShow={700} />

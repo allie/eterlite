@@ -5,6 +5,17 @@ import menu from './menu';
 import settingsController from './settings';
 import log, { renderThreadLog } from './log';
 
+// Ensure only one instance of Eterlite runs at once
+const gotLock = app.requestSingleInstanceLock();
+
+if (!gotLock) {
+  app.quit();
+} else {
+  app.on('second-instance', () => {
+    windowController.window.focus();
+  });
+}
+
 // Intercept requests and fix the headers so we don't get
 // CORS errors when in development. Not necessary in prod.
 function fixCors() {

@@ -9,6 +9,7 @@ const SIDEBAR_WIDTH = 320;
 
 const windowController = {
   window: null,
+  extraWindows: [],
   sidebarOpen: false,
   minWidth: 0, // minimum width including window decoration
   minHeight: 0, // minimum height including window decoration
@@ -68,7 +69,8 @@ const windowController = {
 
     ipcMain.on('fullscreen', (event, fullscreen) => {
       log.debug('window', 'Received ipc message "fullscreen"', fullscreen);
-      this.window.setFullScreen(fullscreen);
+      const fswindow = BrowserWindow.getFocusedWindow() || this.window;
+      fswindow.setFullScreen(fullscreen);
     });
 
     ipcMain.on('screenshot', () => {
@@ -76,10 +78,26 @@ const windowController = {
       this.captureScreenshot();
     });
 
+    ipcMain.on('extra-window', () => {
+      log.debug('window', 'Received ipc message "extra-window"');
+      this.createExtraWindow();
+    });
+
     ipcMain.on('first-render', () => {
       log.debug('window', 'Received ipc message "first-render"');
-      this.ready = true;
-      this.window.show();
+      // If the main window has already been initialized before, this is an extra window
+      // Show the most recent extra window in this case
+      if (
+        this.ready &&
+        this.extraWindows.length > 0 &&
+        this.extraWindows[this.extraWindows.length - 1]
+      ) {
+        log.debug('window', 'Showing most recently created extra window');
+        this.extraWindows[this.extraWindows.length - 1].show();
+      } else {
+        this.ready = true;
+        this.window.show();
+      }
     });
 
     // Save window bounds to settings, debounced
@@ -191,6 +209,52 @@ const windowController = {
       .catch((err) => {
         log.error('window', err.message);
       });
+  },
+
+  createExtraWindow() {
+    log.debug('window', 'Creating new extra window...');
+    const [cw, ch] = this.window.getContentSize();
+
+    const newWindow = new BrowserWindow({
+      autoHideMenuBar: true,
+      show: true,
+      useContentSize: true,
+      width: cw,
+      height: ch - 50,
+      minWidth: 933,
+      minHeight: 631,
+      backgroundColor: '#000000',
+      title: 'Eterlite',
+      webPreferences: {
+        preload: path.join(__dirname, 'preload.js'),
+        backgroundThrottling: false,
+        contextIsolation: true,
+      },
+    });
+
+    newWindow.on('close', () => {
+      log.debug('window', 'Closing extra window...');
+      newWindow.destroy();
+      this.extraWindows = this.extraWindows.filter((win) => win !== newWindow);
+      log.silly('window', 'Extra windows:', this.extraWindows);
+    });
+
+    log.debug('window', 'Loading React app in extra window...');
+    if (process.env.NODE_ENV === 'development') {
+      const port = process.env.PORT || 1212;
+      const url = new URL(`http://localhost:${port}`);
+      url.pathname = 'index.html';
+      newWindow.webContents.loadURL(`${url.href}#/alt`);
+    } else {
+      newWindow.webContents.loadURL(
+        `file://${path.resolve(__dirname, '../renderer/', 'index.html')}#/alt`
+      );
+    }
+
+    this.extraWindows = [
+      ...this.extraWindows.filter((win) => win !== null),
+      newWindow,
+    ];
   },
 };
 
