@@ -87,7 +87,7 @@ const windowController = {
       log.debug('window', 'Received ipc message "reload"');
       log.debug('window', 'Reloading client...');
       const target = BrowserWindow.getFocusedWindow() || this.window;
-      target.webContents.reloadIgnoringCache();
+      target.webContents.reload();
     });
 
     ipcMain.on('first-render', () => {

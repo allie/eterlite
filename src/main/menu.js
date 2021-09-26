@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu } from 'electron';
+import { app, BrowserWindow, Menu, session } from 'electron';
 import windowController from './window';
 import log from './log';
 import settingsController from './settings';
@@ -50,7 +50,7 @@ const toolsMenuTemplate = {
       label: 'Reload Client',
       accelerator: 'CmdOrCtrl+R',
       click() {
-        BrowserWindow.getFocusedWindow().webContents.reloadIgnoringCache();
+        BrowserWindow.getFocusedWindow().webContents.reload();
       },
     },
     {
@@ -74,6 +74,14 @@ const devMenuTemplate = {
       },
     },
     {
+      label: 'Reload Without Cache',
+      accelerator: 'CmdOrCtrl+Shift+R',
+      click() {
+        log.debug('menu', '"Reload Without Cache" menu item clicked');
+        BrowserWindow.getFocusedWindow().webContents.reloadIgnoringCache();
+      },
+    },
+    {
       label: 'Clear Settings',
       click() {
         log.debug('menu', '"Clear Settings" menu item clicked');
@@ -82,6 +90,14 @@ const devMenuTemplate = {
         // TODO: fix relaunching...
         app.relaunch();
         app.quit();
+      },
+    },
+    {
+      label: 'Clear Caches',
+      click() {
+        log.debug('menu', '"Clear Caches" menu item clicked');
+        session.defaultSession.clearStorageData();
+        BrowserWindow.getFocusedWindow().webContents.reload();
       },
     },
   ],
