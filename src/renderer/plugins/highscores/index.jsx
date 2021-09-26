@@ -42,6 +42,13 @@ const HighscoresPlugin = {
 
     return (
       <div className={styles.highscoresContainer}>
+        <button
+          type="button"
+          className={styles.refreshButton}
+          onClick={() => fetchData()}
+        >
+          Refresh
+        </button>
         <div className={styles.dataHeader}>
           <span className={styles.rank}>#</span>
           <span className={styles.name}>Player</span>
