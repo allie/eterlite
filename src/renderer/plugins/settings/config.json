@@ -1,12 +1,13 @@
 {
-  "name": "Eterlite",
+  "name": "Settings",
   "author": "allie",
   "version": "0.1.0",
   "description": "Core settings for Eterlite.",
   "scope": "eterlite",
   "settings": {
     "clientSize": {
-      "label": "Client bounds",
+      "label": "Client size",
+      "description": "Set the exact size of the game client area.",
       "type": "multiInput",
       "inputs": {
         "width": {

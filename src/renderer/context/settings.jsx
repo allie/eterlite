@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const globalSettingsContext = React.createContext();
-const useGlobalSettings = () => React.useContext(globalSettingsContext);
+export const useGlobalSettings = () => React.useContext(globalSettingsContext);
 
 export function GlobalSettingsProvider({ children }) {
   const [settings, setSettings] = React.useState({});

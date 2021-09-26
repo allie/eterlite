@@ -2,6 +2,43 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: center;
-  align-items: center;
+}
+
+.pluginContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.pluginHeader {
+  font-size: calc(13rem / 16);
+  font-weight: bold;
+  color: white;
+  margin-bottom: 8px;
+  flex: none;
+  border: 8px solid transparent;
+  border-image-source: url(assets/images/eterspire/highlight_back.png);
+  border-image-slice: 8 fill;
+  border-image-repeat: repeat;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  user-select: none;
+}
+
+.settingContainer {
+  display: flex;
+  flex-direction: column;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-bottom: 16px;
+}
+
+.settingName {
+  font-size: calc(12rem / 16);
+  font-weight: bold;
+  color: black;
+}
+
+.settingDescription {
+  font-size: calc(12rem / 16);
+  font-weight: normal;
+  color: grey;
 }
