@@ -33,6 +33,13 @@ const toolsMenuTemplate = {
   label: 'Tools',
   submenu: [
     {
+      label: 'Take Screenshot',
+      accelerator: 'CmdOrCtrl+S',
+      click() {
+        windowController.captureScreenshot();
+      },
+    },
+    {
       label: 'Create Alt Window',
       accelerator: 'CmdOrCtrl+N',
       click() {
@@ -40,10 +47,10 @@ const toolsMenuTemplate = {
       },
     },
     {
-      label: 'Take Screenshot',
-      accelerator: 'CmdOrCtrl+S',
+      label: 'Reload Client',
+      accelerator: 'CmdOrCtrl+R',
       click() {
-        windowController.captureScreenshot();
+        BrowserWindow.getFocusedWindow().webContents.reloadIgnoringCache();
       },
     },
     {
@@ -58,14 +65,6 @@ const toolsMenuTemplate = {
 const devMenuTemplate = {
   label: 'Development',
   submenu: [
-    {
-      label: 'Reload',
-      accelerator: 'CmdOrCtrl+R',
-      click() {
-        log.debug('menu', '"Reload" menu item clicked');
-        BrowserWindow.getFocusedWindow().webContents.reloadIgnoringCache();
-      },
-    },
     {
       label: 'Toggle DevTools',
       accelerator: 'Alt+CmdOrCtrl+I',

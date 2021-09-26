@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import ScreenshotTool from 'renderer/tools/screenshot';
 import ExtraWindowTool from 'renderer/tools/extraWindow';
+import ReloadTool from 'renderer/tools/reload';
 
 const ALL_TOOLS = [
   {
@@ -12,6 +13,11 @@ const ALL_TOOLS = [
   },
   {
     module: ExtraWindowTool,
+    defaultEnabled: true,
+    canToggle: true,
+  },
+  {
+    module: ReloadTool,
     defaultEnabled: true,
     canToggle: true,
   },

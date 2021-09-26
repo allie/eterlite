@@ -22,6 +22,9 @@ contextBridge.exposeInMainWorld('electron', {
   syncSettings() {
     ipcRenderer.send('sync-settings');
   },
+  reload() {
+    ipcRenderer.send('reload');
+  },
   on(channel, func) {
     ipcRenderer.on(channel, (event, ...args) => func(...args));
   },

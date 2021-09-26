@@ -83,6 +83,13 @@ const windowController = {
       this.createExtraWindow();
     });
 
+    ipcMain.on('reload', () => {
+      log.debug('window', 'Received ipc message "reload"');
+      log.debug('window', 'Reloading client...');
+      const target = BrowserWindow.getFocusedWindow() || this.window;
+      target.webContents.reloadIgnoringCache();
+    });
+
     ipcMain.on('first-render', () => {
       log.debug('window', 'Received ipc message "first-render"');
       // If the main window has already been initialized before, this is an extra window
