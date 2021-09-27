@@ -23,7 +23,7 @@ const ALL_TOOLS = [
   },
 ];
 
-const toolsContext = React.createContext();
+const toolsContext = React.createContext({});
 
 export const useTools = () => React.useContext(toolsContext);
 

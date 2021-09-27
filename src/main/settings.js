@@ -138,6 +138,13 @@ const settingsController = {
       log.silly('settings', 'Replying to "sync-settings"...', this.store.store);
       event.reply('sync-settings', this.store.store);
     });
+
+    ipcMain.on('set-setting', (event, { scope, setting, value }) => {
+      log.debug('settings', 'Received ipc message "set-settings"', { scope, setting, value });
+      this.writeSetting(scope, setting, value);
+      log.silly('settings', 'Syncing settings after update...', this.store.store);
+      event.reply('sync-settings', this.store.store);
+    });
   },
 
   writeSetting(scope, name, value) {

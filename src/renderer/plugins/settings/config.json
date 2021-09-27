@@ -6,7 +6,6 @@
   "scope": "eterlite",
   "settings": {
     "clientSize": {
-      "label": "Client size",
       "description": "Set the exact size of the game client area.",
       "type": "multiInput",
       "inputs": {
@@ -21,10 +20,22 @@
       }
     },
     "rememberWindow": {
-      "label": "Remember window size and position",
+      "label": "Save window size and position",
       "description": "If enabled, the window will restore its previous size and position when launching.",
       "type": "toggle",
       "default": true
+    },
+    "loadingScreenSounds": {
+      "label": "Loading screen sound effects",
+      "description": "Enables or disables sound effects on the client loading screen.",
+      "type": "toggle",
+      "default": true
+    },
+    "enabledPlugins": {
+      "default": []
+    },
+    "enabledTools": {
+      "default": []
     },
     "windowBounds": {
       "x": {

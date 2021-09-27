@@ -7,7 +7,13 @@
   "settings": {
     "autoRefresh": {
       "label": "Auto-refresh",
-      "description": "Automatically refreshes the highscores on an interval.",
+      "description": "Automatically refreshes the highscores once a minute.",
+      "type": "toggle",
+      "default": true
+    },
+    "animations": {
+      "label": "Animations",
+      "description": "Enables or disables animations when rankings, levels, or experience change.",
       "type": "toggle",
       "default": true
     }

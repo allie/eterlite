@@ -18,7 +18,7 @@ const ALL_PLUGINS = [
   },
 ];
 
-const pluginsContext = React.createContext();
+const pluginsContext = React.createContext({});
 
 export const usePlugins = () => React.useContext(pluginsContext);
 

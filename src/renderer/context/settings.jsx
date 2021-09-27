@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const globalSettingsContext = React.createContext();
+const globalSettingsContext = React.createContext({});
 export const useGlobalSettings = () => React.useContext(globalSettingsContext);
 
 export function GlobalSettingsProvider({ children }) {
@@ -60,7 +60,7 @@ export function GlobalSettingsProvider({ children }) {
         return currentSettings;
       });
 
-      electron.setSetting();
+      electron.setSetting(scope, setting, value);
     },
     [setSettings, settings]
   );

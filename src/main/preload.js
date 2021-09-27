@@ -22,6 +22,9 @@ contextBridge.exposeInMainWorld('electron', {
   syncSettings() {
     ipcRenderer.send('sync-settings');
   },
+  setSetting(scope, setting, value) {
+    ipcRenderer.send('set-setting', { scope, setting, value });
+  },
   reload() {
     ipcRenderer.send('reload');
   },

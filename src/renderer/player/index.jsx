@@ -5,11 +5,18 @@ import LoadingScreen from '../loading';
 
 import styles from './styles.css';
 
+const isDev = process.env.NODE_ENV !== 'production';
+
 export default function Player({ minimal }) {
   const gameInstanceRef = React.useRef();
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
+    // If in dev, don't load the client. Speeds up development
+    if (isDev) {
+      return;
+    }
+
     window.devicePixelRatio = 1;
 
     // TODO: replace this with a local config file
@@ -107,7 +114,7 @@ export default function Player({ minimal }) {
 
   return (
     <>
-      <LoadingScreen progress={progress} />
+      {!isDev && <LoadingScreen progress={progress} />}
       {/* TODO: find a better fix for this, this hack sucks.
       the problem is: often, a button is focused by default
       when launching the app, and it causes a tooltip to show.
