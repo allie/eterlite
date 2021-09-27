@@ -1,13 +1,23 @@
-import React from 'react';
-import styles from './styles.css';
+import React, { useCallback } from 'react';
+import debounce from 'debounce';
 
 import icon from './icon.png';
 import config from './config.json';
+import styles from './styles.css';
 
 import { useGlobalSettings, useSettings } from 'renderer/context/settings';
 import { usePlugins } from 'renderer/context/plugins';
 
 function Setting({ setting, value, setValue }) {
+  const [renderValue, setRenderValue] = React.useState(value);
+  const [valid, setValid] = React.useState(true);
+
+  React.useEffect(() => {
+    setRenderValue(value);
+  }, [value, setRenderValue]);
+
+  const debouncedUpdateValue = React.useCallback(debounce((v) => setValue(v), 500), []);
+
   if (setting.type === 'toggle') {
     return (
       <div className={styles.settingToggleContainer}>
@@ -20,7 +30,92 @@ function Setting({ setting, value, setValue }) {
           </div>
         </div>
         <div className={styles.settingToggleRightContainer}>
-          <input type="checkbox" checked={value} onChange={e => setValue(e.target.checked)} />
+          <input
+            type="checkbox"
+            checked={renderValue}
+            onChange={(e) => {
+              setRenderValue(value);
+              debouncedUpdateValue(e.target.checked);
+            }}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  const updateMultiInputItem = React.useCallback((key, itemValue, input) => {
+    const newValue = {
+      ...value,
+      inputs: {
+        ...value.inputs,
+        [key]: itemValue
+      }
+    };
+
+    if (renderValue !== newValue) {
+      setRenderValue(newValue);
+    }
+
+    let isValid = true;
+
+    if (input.type === 'number') {
+      if (input.min && itemValue < input.min) {
+        isValid = false;
+      }
+      if (input.max && itemValue > input.max) {
+        isValid = false;
+      }
+    }
+
+    setValid(isValid);
+
+    if (isValid) {
+      debouncedUpdateValue(newValue);
+    }
+  }, [setting, value, setValue, renderValue, debouncedUpdateValue, setRenderValue, setValid]);
+
+  if (setting.type === 'multiInput') {
+    return (
+      <div className={styles.settingContainer}>
+        <div className={styles.settingName}>
+          {setting.label}
+        </div>
+        <div className={styles.settingDescription}>
+          {setting.description}
+        </div>
+        <div className={styles.multiInputContainer}>
+          {Object.entries(setting.inputs).map(([name, input]) => (
+            <div key={name} className={styles.multiInputItemContainer}>
+              <div className={styles.multiInputItemLabel}>
+                {input.label}:
+              </div>
+              {(() => {
+                switch (input.type) {
+                  case 'number': {
+                    return (
+                      <input
+                        type="number"
+                        value={renderValue.inputs[name]}
+                        className={!valid ? styles.invalid : ''}
+                        {...(input.min ? { min: input.min } : {})}
+                        {...(input.max ? { max: input.max } : {})}
+                        onChange={(e) => updateMultiInputItem(name, e.target.value, input)}
+                      />
+                    );
+                  }
+                  default:
+                    return (
+                      <input
+                        type="text"
+                        value={renderValue.inputs[name]}
+                        className={!valid ? styles.invalid : ''}
+                        onChange={(e) => updateMultiInputItem(name, e.target.value, input)}
+                      />
+                    );
+                }
+              })()}
+            </div>
+          ))}
         </div>
       </div>
     );
@@ -44,7 +139,17 @@ const SettingsPlugin = {
   Component() {
     const { settings, setSetting } = useGlobalSettings();
     const { plugins } = usePlugins();
-    console.log(settings);
+
+    const debouncedUpdateClientSize = React.useCallback(debounce((clientSize) => {
+      electron.setClientSize(clientSize);
+    }, 500), []);
+
+    React.useEffect(() => {
+      debouncedUpdateClientSize({
+        width: settings.eterlite.clientSize.inputs.width,
+        height: settings.eterlite.clientSize.inputs.height
+      });
+    }, [settings.eterlite.clientSize, debouncedUpdateClientSize]);
 
     return (
       <div className={styles.settingsContainer}>

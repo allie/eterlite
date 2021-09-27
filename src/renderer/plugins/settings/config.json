@@ -6,15 +6,20 @@
   "scope": "eterlite",
   "settings": {
     "clientSize": {
+      "label": "Client size",
       "description": "Set the exact size of the game client area.",
       "type": "multiInput",
       "inputs": {
         "width": {
           "label": "Width",
+          "type": "number",
+          "min": 900,
           "default": 900
         },
         "height": {
           "label": "Height",
+          "type": "number",
+          "min": 600,
           "default": 600
         }
       }

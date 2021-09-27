@@ -13,6 +13,9 @@ contextBridge.exposeInMainWorld('electron', {
   createExtraWindow() {
     ipcRenderer.send('extra-window');
   },
+  setClientSize(clientSize) {
+    ipcRenderer.send('client-size', clientSize);
+  },
   openExternalLink(url) {
     ipcRenderer.send('open-external-link', url);
   },

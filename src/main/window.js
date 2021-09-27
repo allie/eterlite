@@ -59,8 +59,8 @@ const windowController = {
     }
 
     const [width, height] = this.window.getSize();
-    this.minWidth = width;
-    this.minHeight = height;
+    this.minWidth = 933;
+    this.minHeight = 681;
 
     ipcMain.on('sidebar', (event, isOpen) => {
       log.debug('window', 'Received ipc message "sidebar"', isOpen);
@@ -81,6 +81,12 @@ const windowController = {
     ipcMain.on('extra-window', () => {
       log.debug('window', 'Received ipc message "extra-window"');
       this.createExtraWindow();
+    });
+
+    ipcMain.on('client-size', (event, { width, height }) => {
+      log.debug('window', 'Received ipc message "client-size"', { width, height });
+      this.window.setContentSize(Number(width) + 33 + (this.sidebarOpen ? SIDEBAR_WIDTH : 0), Number(height) + 90);
+      console.log(Number(width) + 33 + (this.sidebarOpen ? SIDEBAR_WIDTH : 0));
     });
 
     ipcMain.on('reload', () => {

@@ -65,3 +65,33 @@
   margin-left: 16px;
   flex: none;
 }
+
+.multiInputContainer {
+  margin-top: 8px;
+}
+
+.multiInputItemContainer {
+  display: flex;
+  align-items: center;
+}
+
+.multiInputItemContainer:not(:last-of-type) {
+  margin-bottom: 4px;
+}
+
+.multiInputItemLabel {
+  min-width: 50px;
+  font-size: calc(11rem / 16);
+  color: black;
+  font-weight: bold;
+  flex: none;
+}
+
+.multiInputContainer input {
+  flex: 1 1 auto;
+  font-size: calc(12rem / 16);
+}
+
+.invalid {
+  color: red;
+}
