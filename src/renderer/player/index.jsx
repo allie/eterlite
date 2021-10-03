@@ -7,14 +7,15 @@ import styles from './styles.css';
 
 const isDev = process.env.NODE_ENV !== 'production';
 
-export default function Player({ minimal }) {
+export default function Player({ minimal, clientOnly }) {
   const gameInstanceRef = React.useRef();
   const [progress, setProgress] = React.useState(0);
+  console.log(clientOnly);
 
   React.useEffect(() => {
     // If in dev, don't load the client. Speeds up development
     if (isDev) {
-      return;
+      // return;
     }
 
     window.devicePixelRatio = 1;
@@ -97,19 +98,11 @@ export default function Player({ minimal }) {
       }
     );
 
-    window.addEventListener('resize', resizeCanvas);
-
     const canvas = document.getElementById('#canvas');
     canvas.style.display = 'none';
     canvas.onselectstart = () => false;
 
-    resizeCanvas();
-
     document.getElementById('gameClient').focus();
-
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-    };
   }, [setProgress, minimal]);
 
   return (
@@ -121,15 +114,17 @@ export default function Player({ minimal }) {
       focusing this div fixes it, but it's kind of a goofy workaround
       and requires me to break a bunch of rules */}
       {/* eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex, jsx-a11y/tabindex-no-positive */}
-      <div tabIndex="1" className={styles.gameClient} id="gameClient" />
+      <div tabIndex="1" className={`${styles.gameClient} ${clientOnly ? styles.clientOnly : ''}`} id="gameClient" />
     </>
   );
 }
 
 Player.propTypes = {
   minimal: PropTypes.bool,
+  clientOnly: PropTypes.bool
 };
 
 Player.defaultProps = {
   minimal: false,
+  clientOnly: false
 };

@@ -245,9 +245,9 @@ export default merge(baseConfig, {
       NODE_ENV: 'development',
     }),
 
-    new webpack.LoaderOptionsPlugin({
-      debug: true,
-    }),
+    // new webpack.LoaderOptionsPlugin({
+    //   debug: true,
+    // }),
 
     new ReactRefreshWebpackPlugin(),
 

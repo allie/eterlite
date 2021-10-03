@@ -1,13 +1,8 @@
 .toolbarContainer {
   flex: none;
   display: flex;
-  border: 12px solid transparent;
-  border-image-source: url(assets/images/eterspire/border2.png);
-  border-image-slice: 12 fill;
-  border-image-repeat: repeat;
-  border-image-outset: 1px 1px 3px 1px;
-  padding-right: 1px;
-  height: 50px;
+  margin-bottom: 1px;
+  padding: 4px;
 }
 
 .leftContainer {
@@ -20,62 +15,54 @@
 }
 
 .toolsContainer {
-  margin-right: 3px;
-  padding-right: 3px;
-  border-right: 2px solid rgba(149, 149, 149, 0.6);
+  margin-right: 8px;
+  padding-right: 8px;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .leftContainer,
 .pluginsContainer,
 .toolsContainer {
   display: flex;
-  transform: translateY(1px);
 }
 
 .leftContainer button:not(:last-of-type) {
-  margin-right: 3px;
+  margin-right: 4px;
 }
 
 .pluginsContainer button:not(:first-of-type),
 .toolsContainer button:not(:first-of-type) {
-  margin-left: 3px;
+  margin-left: 4px;
 }
 
 .toolbarContainer button {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
-  border: 8px solid transparent;
-  border-image-source: url(assets/images/eterspire/button_blue.png);
-  border-image-slice: 8 fill;
-  border-image-repeat: repeat;
-  box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
-  transform: translateY(-2px);
+  transform: translateY(0);
   user-select: none;
+  cursor: pointer;
 }
 
 .toolbarContainer button img {
-  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.8));
+  user-select: none;
+  pointer-events: none;
+  filter:drop-shadow(2px 2px rgba(0, 0, 0, 0.5));
 }
 
-.toolbarContainer button:hover {
-  border: 8px solid transparent;
-  border-image-source: url(assets/images/eterspire/button_blue_shine.png);
-  border-image-slice: 8 fill;
-  border-image-repeat: repeat;
+.toolbarContainer button:hover img {
+  transform: translateY(-1px);
 }
 
-.toolbarContainer button:active {
-  transform: translate(1px, -1px);
-  box-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+.toolbarContainer button:active img {
+  transform: translateY(0px);
 }
 
 .toolbarContainer .activePlugin {
-  border: 8px solid transparent;
-  border-image-source: url(assets/images/eterspire/button_blue_shine.png);
-  border-image-slice: 8 fill;
-  border-image-repeat: repeat;
+  /* border: 1px solid rgb(209,157, 80); */
+  /* background-color: rgba(209,157, 80, 0.4); */
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
 }

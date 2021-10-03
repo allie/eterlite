@@ -1,14 +1,15 @@
-import { BrowserWindow, clipboard, ipcMain } from 'electron';
+import { BrowserView, BrowserWindow, clipboard, ipcMain } from 'electron';
 import debounce from 'debounce';
 import isDev from 'electron-is-dev';
 import path from 'path';
 import log from './log';
 import settingsController from './settings';
 
-const SIDEBAR_WIDTH = 320;
+const SIDEBAR_WIDTH = 324;
 
 const windowController = {
   window: null,
+  playerView: null,
   extraWindows: [],
   sidebarOpen: false,
   minWidth: 0, // minimum width including window decoration
@@ -24,8 +25,8 @@ const windowController = {
     const bounds = rememberWindow
       ? settingsController.getSetting('eterlite', 'windowBounds')
       : {
-          width: 933,
-          height: 681,
+          width: 928,
+          height: 662,
         };
 
     if (rememberWindow) {
@@ -41,8 +42,8 @@ const windowController = {
       show: false,
       useContentSize: true,
       ...bounds,
-      minWidth: 933,
-      minHeight: 681,
+      minWidth: 928,
+      minHeight: 662,
       backgroundColor: '#000000',
       title: 'Eterlite',
       webPreferences: {
@@ -59,8 +60,28 @@ const windowController = {
     }
 
     const [width, height] = this.window.getSize();
-    this.minWidth = 933;
-    this.minHeight = 681;
+    this.minWidth = 928;
+    this.minHeight = 662;
+
+    this.playerView = new BrowserView({
+      width: 900,
+      height: 600,
+      transparent: true,
+      webPreferences: {
+        preload: path.join(__dirname, 'preload.js'),
+        backgroundThrottling: false,
+        contextIsolation: true,
+      },
+    });
+    
+    this.window.setBrowserView(this.playerView);
+    this.playerView.setBounds({ x: 14, y: 48, width: 900, height: 600 });
+
+    log.debug('window', 'Created player view');
+
+    if (isDev) {
+      this.playerView.webContents.openDevTools();
+    }
 
     ipcMain.on('sidebar', (event, isOpen) => {
       log.debug('window', 'Received ipc message "sidebar"', isOpen);
@@ -85,8 +106,7 @@ const windowController = {
 
     ipcMain.on('client-size', (event, { width, height }) => {
       log.debug('window', 'Received ipc message "client-size"', { width, height });
-      this.window.setContentSize(Number(width) + 33 + (this.sidebarOpen ? SIDEBAR_WIDTH : 0), Number(height) + 90);
-      console.log(Number(width) + 33 + (this.sidebarOpen ? SIDEBAR_WIDTH : 0));
+      this.window.setContentSize(Number(width) + 28 + (this.sidebarOpen ? SIDEBAR_WIDTH : 0), Number(height) + 62);
     });
 
     ipcMain.on('reload', () => {
@@ -132,6 +152,11 @@ const windowController = {
       );
     }
 
+    this.window.on('resize', () => {
+      const [newWidth, newHeight] = this.window.getContentSize();
+      this.playerView.setBounds({ x: 14, y: 48, width: newWidth - (this.sidebarOpen ? SIDEBAR_WIDTH : 0) - 28, height: newHeight - 62 });
+    });
+
     // Close the sidebar on reload
     // TODO: Remove this and load sidebar state from config file instead
     this.window.webContents.on('did-start-loading', () => {
@@ -150,11 +175,27 @@ const windowController = {
         `file://${path.resolve(__dirname, '../renderer/', 'index.html')}`
       );
     }
+
+    log.debug('window', 'Loading Player view...');
+    if (process.env.NODE_ENV === 'development') {
+      const port = process.env.PORT || 1212;
+      const url = new URL(`http://localhost:${port}`);
+      url.pathname = 'index.html';
+      this.playerView.webContents.loadURL(`${url.href}#/player`);
+    } else {
+      this.playerView.webContents.loadURL(
+        `file://${path.resolve(__dirname, '../renderer/', 'index.html')}#/player`
+      );
+    }
   },
 
   toggleSidebar(isOpen) {
     const [cw, ch] = this.window.getContentSize();
-    if (isOpen && !this.sidebarOpen) {
+
+    const currentlyOpen = this.sidebarOpen;
+    this.sidebarOpen = isOpen;
+
+    if (isOpen && !currentlyOpen) {
       const contentWidth = cw + SIDEBAR_WIDTH;
       const minWidth = this.minWidth + SIDEBAR_WIDTH;
 
@@ -171,7 +212,7 @@ const windowController = {
         'New minimum size:',
         `${minWidth}, ${this.minHeight}`
       );
-    } else if (!isOpen && this.sidebarOpen) {
+    } else if (!isOpen && currentlyOpen) {
       const [w, h] = this.window.getSize();
 
       this.window.setMinimumSize(this.minWidth, this.minHeight);
@@ -189,7 +230,6 @@ const windowController = {
         `${this.minWidth}, ${this.minHeight}`
       );
     }
-    this.sidebarOpen = isOpen;
   },
 
   captureScreenshot() {

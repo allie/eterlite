@@ -16,7 +16,19 @@ function Setting({ setting, value, setValue }) {
     setRenderValue(value);
   }, [value, setRenderValue]);
 
-  const debouncedUpdateValue = React.useCallback(debounce((v) => setValue(v), 500), []);
+  const [firstRender, setFirstRender] = React.useState(true);
+
+  React.useLayoutEffect(() => {
+    setFirstRender(false);
+  }, [setFirstRender]);
+
+  const debouncedUpdateValue = React.useCallback(debounce((v) => {
+    if (!firstRender) {
+      return;
+    }
+
+    setValue(v);
+  }, 500), [firstRender]);
 
   if (setting.type === 'toggle') {
     return (
@@ -43,7 +55,7 @@ function Setting({ setting, value, setValue }) {
     );
   }
 
-  const updateMultiInputItem = React.useCallback((key, itemValue, input) => {
+  const updateMultiInputItem = React.useCallback((key, itemValue, input, debounceSave = true) => {
     const newValue = {
       ...value,
       inputs: {
@@ -70,7 +82,11 @@ function Setting({ setting, value, setValue }) {
     setValid(isValid);
 
     if (isValid) {
-      debouncedUpdateValue(newValue);
+      if (debounceSave) {
+        debouncedUpdateValue(newValue);
+      } else {
+        setValue(newValue);
+      }
     }
   }, [setting, value, setValue, renderValue, debouncedUpdateValue, setRenderValue, setValid]);
 
@@ -99,7 +115,7 @@ function Setting({ setting, value, setValue }) {
                         className={!valid ? styles.invalid : ''}
                         {...(input.min ? { min: input.min } : {})}
                         {...(input.max ? { max: input.max } : {})}
-                        onChange={(e) => updateMultiInputItem(name, e.target.value, input)}
+                        onChange={(e) => updateMultiInputItem(name, e.target.value, input, false)}
                       />
                     );
                   }

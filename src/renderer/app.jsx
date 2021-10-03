@@ -18,7 +18,7 @@ function MainWindow() {
     <div className={styles.appContainer}>
       <Toolbar />
       <div className={styles.bottomContainer}>
-        <Player />
+        <div className={styles.gameContainer} />
         {pluginPanel && <Sidebar />}
       </div>
     </div>
@@ -33,12 +33,21 @@ function AltWindow() {
   );
 }
 
+function PlayerView() {
+  return (
+    <Player clientOnly={true} />
+  );
+}
+
 function AppRouter() {
   return (
     <HashRouter>
       <Switch>
         <Route path="/alt">
           <AltWindow />
+        </Route>
+        <Route path="/player">
+          <PlayerView />
         </Route>
         <Route path="/" exact>
           <MainWindow />
