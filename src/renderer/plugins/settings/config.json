@@ -5,6 +5,12 @@
   "description": "Core settings for Eterlite.",
   "scope": "eterlite",
   "settings": {
+    "accountName": {
+      "label": "Account name",
+      "description": "Enter your account name here to allow enhanced functionality in plugins.",
+      "type": "text",
+      "placeholder": "Cowsay41"
+    },
     "clientSize": {
       "label": "Client size",
       "description": "Set the exact size of the game client area.",
@@ -35,6 +41,85 @@
       "description": "Enables or disables sound effects on the client loading screen.",
       "type": "toggle",
       "default": true
+    },
+    "cursor": {
+      "label": "Custom Cursor",
+      "description": "Choose a custom cursor to use within Eterlite.",
+      "type": "select",
+      "options": [
+        {
+          "label": "None",
+          "value": ""
+        },
+        {
+          "label": "Bloodchrome Broadsword",
+          "value": "bcBroad"
+        },
+        {
+          "label": "Bloodchrome Dagger",
+          "value": "bcDagger"
+        },
+        {
+          "label": "Bloodchrome Longsword",
+          "value": "bcLong"
+        },
+        {
+          "label": "Bone Sword",
+          "value": "boneSword"
+        },
+        {
+          "label": "Club",
+          "value": "club"
+        },
+        {
+          "label": "Cooked Catfish",
+          "value": "cookedCatfish"
+        },
+        {
+          "label": "Cooked Cod",
+          "value": "cookedCod"
+        },
+        {
+          "label": "Cooked Eel",
+          "value": "cookedEel"
+        },
+        {
+          "label": "Cooked Herring",
+          "value": "cookedHerring"
+        },
+        {
+          "label": "Cooked Sardine",
+          "value": "cookedSardine"
+        },
+        {
+          "label": "Fishing Rod",
+          "value": "fishingRod"
+        },
+        {
+          "label": "Fly Fishing Rod",
+          "value": "flyFishingRod"
+        },
+        {
+          "label": "Gold Helm",
+          "value": "goldHelm"
+        },
+        {
+          "label": "Ice Sword",
+          "value": "iceSword"
+        },
+        {
+          "label": "Iron Club",
+          "value": "ironClub"
+        },
+        {
+          "label": "Katalyn's Dagger",
+          "value": "katalynsDagger"
+        },
+        {
+          "label": "Orcol's Wrath",
+          "value": "orcolsWrath"
+        }
+      ]
     },
     "enabledPlugins": {
       "default": []

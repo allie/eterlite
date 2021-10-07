@@ -32,7 +32,7 @@ function Setting({ setting, value, setValue }) {
 
   if (setting.type === 'toggle') {
     return (
-      <div className={styles.settingToggleContainer}>
+      <div className={`${styles.settingToggleContainer} ${styles.settingContainer}`}>
         <div className={styles.settingToggleleftContainer}>
           <div className={styles.settingName}>
             {setting.label}
@@ -47,7 +47,7 @@ function Setting({ setting, value, setValue }) {
             checked={renderValue}
             onChange={(e) => {
               setRenderValue(value);
-              debouncedUpdateValue(e.target.checked);
+              setValue(e.target.checked);
             }}
           />
         </div>
@@ -89,6 +89,56 @@ function Setting({ setting, value, setValue }) {
       }
     }
   }, [setting, value, setValue, renderValue, debouncedUpdateValue, setRenderValue, setValid]);
+
+  if (setting.type === 'select') {
+    return (
+      <div className={styles.settingContainer}>
+        <div className={styles.settingName}>
+          {setting.label}
+        </div>
+        <div className={styles.settingDescription}>
+          {setting.description}
+        </div>
+        <div className={styles.selectContainer}>
+          <select
+            value={renderValue}
+            onChange={(e) => {
+              setRenderValue(e.target.value);
+              setValue(e.target.value);
+            }}
+          >
+            {setting.options.map((option) => (
+              <option key={option.value} value={option.value}>{option.label}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+    );
+  }
+
+  if (setting.type === 'text') {
+    return (
+      <div className={styles.settingContainer}>
+        <div className={styles.settingName}>
+          {setting.label}
+        </div>
+        <div className={styles.settingDescription}>
+          {setting.description}
+        </div>
+        <div className={styles.textInputContainer}>
+          <input
+            type="text"
+            {...(setting.placeholder ? { placeholder: setting.placeholder } : {})}
+            value={renderValue}
+            onChange={(e) => {
+              setRenderValue(e.target.value);
+              debouncedUpdateValue(e.target.value);
+            }}
+          />
+        </div>
+      </div>
+    );
+  }
 
   if (setting.type === 'multiInput') {
     return (

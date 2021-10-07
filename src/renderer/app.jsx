@@ -10,6 +10,7 @@ import styles from './styles.css';
 import { PluginsProvider, usePlugins } from './context/plugins';
 import { ToolsProvider } from './context/tools';
 import { GlobalSettingsProvider } from './context/settings';
+import { CursorProvider } from './context/cursor';
 
 function MainWindow() {
   const { pluginPanel } = usePlugins();
@@ -67,7 +68,9 @@ export default function App() {
       <GlobalSettingsProvider>
         <PluginsProvider>
           <ToolsProvider>
-            <AppRouter />
+            <CursorProvider>
+              <AppRouter />
+            </CursorProvider>
           </ToolsProvider>
         </PluginsProvider>
         <ReactTooltip delayShow={700} />

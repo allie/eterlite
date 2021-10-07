@@ -22,6 +22,7 @@ export default function Player({ minimal, clientOnly }) {
 
     // TODO: replace this with a local config file
     window.setCookie = (name, value, days) => {
+      console.log('set cookie', name, value);
       let expires = '';
       if (days) {
         const date = new Date();
@@ -33,6 +34,7 @@ export default function Player({ minimal, clientOnly }) {
 
     // TODO: replace this with a local config file
     window.getCookie = (name) => {
+      console.log('get cookie', name);
       const nameEQ = `${name}=`;
       const ca = document.cookie.split(';');
       for (let i = 0; i < ca.length; i++) {

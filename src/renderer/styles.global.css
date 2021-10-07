@@ -178,3 +178,7 @@ button {
 #root .__react_component_tooltip::after {
   display: none;
 }
+
+body * {
+  cursor: inherit !important;
+}

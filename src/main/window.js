@@ -25,8 +25,8 @@ const windowController = {
     const bounds = rememberWindow
       ? settingsController.getSetting('eterlite', 'windowBounds')
       : {
-          width: 930,
-          height: 664,
+          width: 928,
+          height: 662,
         };
 
     if (rememberWindow) {
@@ -42,8 +42,8 @@ const windowController = {
       show: false,
       useContentSize: true,
       ...bounds,
-      minWidth: 930,
-      minHeight: 664,
+      minWidth: 928,
+      minHeight: 662,
       backgroundColor: '#000000',
       title: 'Eterlite',
       webPreferences: {
@@ -60,8 +60,8 @@ const windowController = {
     }
 
     const [width, height] = this.window.getSize();
-    this.minWidth = 930;
-    this.minHeight = 664;
+    this.minWidth = 928;
+    this.minHeight = 662;
 
     this.playerView = new BrowserView({
       width: 900,
@@ -75,7 +75,7 @@ const windowController = {
     });
     
     this.window.setBrowserView(this.playerView);
-    this.playerView.setBounds({ x: 15, y: 49, width: 900, height: 600 });
+    this.playerView.setBounds({ x: 14, y: 48, width: 900, height: 600 });
 
     log.debug('window', 'Created player view');
 
@@ -106,7 +106,7 @@ const windowController = {
 
     ipcMain.on('client-size', (event, { width, height }) => {
       log.debug('window', 'Received ipc message "client-size"', { width, height });
-      this.window.setContentSize(Number(width) + 30 + (this.sidebarOpen ? SIDEBAR_WIDTH : 0), Number(height) + 64);
+      this.window.setContentSize(Number(width) + 28 + (this.sidebarOpen ? SIDEBAR_WIDTH : 0), Number(height) + 62);
     });
 
     ipcMain.on('reload', () => {
@@ -154,7 +154,7 @@ const windowController = {
 
     this.window.on('resize', () => {
       const [newWidth, newHeight] = this.window.getContentSize();
-      this.playerView.setBounds({ x: 15, y: 49, width: newWidth - (this.sidebarOpen ? SIDEBAR_WIDTH : 0) - 30, height: newHeight - 64 });
+      this.playerView.setBounds({ x: 14, y: 48, width: newWidth - (this.sidebarOpen ? SIDEBAR_WIDTH : 0) - 28, height: newHeight - 62 });
     });
 
     // Close the sidebar on reload

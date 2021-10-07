@@ -100,11 +100,11 @@ export default function Toolbar() {
   return (
     <div className={styles.toolbarContainer}>
       <div className={styles.leftContainer}>
-        {/* <button
+        <button
           type="button"
         >
           <img src={eterliteIcon} alt="Eterlite" />
-        </button> */}
+        </button>
         {links.map((buttonProps) => (
           <LinkButton key={buttonProps.tooltip} {...buttonProps} />
         ))}

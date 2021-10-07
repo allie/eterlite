@@ -1,7 +1,7 @@
 {
   "name": "Eterlite",
   "productName": "Eterlite",
-  "version": "0.1.0",
+  "version": "0.2.0-b3",
   "description": "An electron wrapper for the browser-based MMO Eterspire",
   "main": "./dist/main/main.js",
   "author": {

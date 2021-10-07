@@ -10,6 +10,7 @@
   border-image-slice: 12 fill;
   border-image-repeat: repeat;
   border-image-outset: 2px 2px 1px 3px;
+  backface-visibility: hidden;
   padding: 1px 0px;
   margin-left: 4px;
 }
@@ -29,6 +30,7 @@
   border-image-source: url(assets/images/eterspire/highlight_back.png);
   border-image-slice: 8 fill;
   border-image-repeat: repeat;
+  backface-visibility: hidden;
   box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
   user-select: none;
 }
